@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   Flex,
@@ -12,6 +12,9 @@ import {
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import './home.css';
+import { FaCalendarAlt, FaClock } from 'react-icons/fa';
+import { StarIcon } from '@chakra-ui/icons';
 
 // Import images or use URLs
 import firstCourse from '../../assets/course1.jpg';
@@ -19,13 +22,8 @@ import secondCourse from '../../assets/course2.jpg';
 // import thirdCourse from '../../assets/course3.jpg';
 // import fourthCourse from '../../assets/course4.jpg'; // assuming you have a fourth image
 
-// importing css
-import './home.css';
-import { FaCalendarAlt, FaClock } from 'react-icons/fa';
-import { StarIcon } from '@chakra-ui/icons';
-
 // Custom dot component
-function CustomDot({ onClick, index, currentSlide }) {
+function CustomDot({ onClick, index, currentSlide, autoplay }) {
   return (
     <Flex
       direction="column"
@@ -48,15 +46,22 @@ function CustomDot({ onClick, index, currentSlide }) {
           w={4}
           h={4}
           rounded="full"
-          bg={index === currentSlide ? 'green.500' : 'gray.300'}
+          bg={
+            index === currentSlide
+              ? autoplay
+                ? 'green.500'
+                : 'blue.500'
+              : 'gray.300'
+          }
         />
       </Box>
     </Flex>
   );
 }
 
-const TrendingCategories = () => {
+const UpcomingCourses = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [autoplay, setAutoplay] = useState(true); // State to manage autoplay
 
   const courses = [
     {
@@ -86,38 +91,16 @@ const TrendingCategories = () => {
       image: secondCourse,
       price: '$100',
     },
-    {
-      title: 'Fourth Course',
-      instructor: 'Another Instructor',
-      rating: '4.5',
-      hours: '2:00 Hours',
-      date: '10 Apr 2022',
-      image: secondCourse,
-      price: '$50',
-    },
-    {
-      title: 'Fourth Course',
-      instructor: 'Another Instructor',
-      rating: '4.5',
-      hours: '2:00 Hours',
-      date: '10 Apr 2022',
-      image: secondCourse,
-      price: '$50',
-    },
-    {
-      title: 'Fourth Course',
-      instructor: 'Another Instructor',
-      rating: '4.5',
-      hours: '2:00 Hours',
-      date: '10 Apr 2022',
-      image: secondCourse,
-      price: '$50',
-    },
   ];
 
-  //   Conditional Dot rendering
-  const initialCards = 6;
-  const numDots = Math.ceil((courses.length - initialCards + 1) / 1);
+  // Update autoplay state based on slider events
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setAutoplay(true);
+    }, 8000);
+
+    return () => clearInterval(timer);
+  }, []);
 
   const settings = {
     dots: true,
@@ -125,21 +108,18 @@ const TrendingCategories = () => {
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 6000,
+    autoplay: autoplay,
+    autoplaySpeed: 8000,
     cssEase: 'linear',
     customPaging: function (i) {
-      if (i < numDots) {
-        return (
-          <CustomDot
-            index={i}
-            currentSlide={currentSlide}
-            onClick={() => setCurrentSlide(i)}
-          />
-        );
-      } else {
-        return <div style={{ display: 'none' }} />;
-      }
+      return (
+        <CustomDot
+          index={i}
+          currentSlide={currentSlide}
+          onClick={() => setCurrentSlide(i)}
+          autoplay={autoplay}
+        />
+      );
     },
     beforeChange: (current, next) => setCurrentSlide(next),
     dotsClass: 'slick-dots custom-dots',
@@ -148,19 +128,19 @@ const TrendingCategories = () => {
   return (
     <Box p={4}>
       <Heading as="h2" size="lg" mb={4}>
-        Trending Categories
+        Upcoming Courses
       </Heading>
-      <Text mb={4}>#Browse trending & popular learning topics</Text>
+      <Text mb={4}>Courses that will be published soon</Text>
 
       <Slider {...settings}>
         {courses.map((course, index) => (
           <Box
-            h="250px"
+            h="450px"
             key={index}
             borderRadius="15px"
             overflow="hidden"
             marginTop={5}
-            border={"2px solid red"}
+            className="new-course-card"
           >
             {/* Card Section */}
             <Box
@@ -218,4 +198,4 @@ const TrendingCategories = () => {
   );
 };
 
-export default TrendingCategories;
+export default UpcomingCourses;

@@ -8,6 +8,7 @@ import teacher from '../../assets/teacher.svg';
 import student from '../../assets/student.svg';
 import video from '../../assets/video.svg';
 import course from '../../assets/course.svg';
+import newSec from "../../assets/become_instructor_banner.png";
 
 import {
   Container,
@@ -18,6 +19,11 @@ import {
   Box,
 } from '@chakra-ui/react';
 import FeaturedCourse from './FeaturedCourse';
+import NewestCourse from './NewestCourse';
+import LatestBundles from './LatestBundles';
+import UpcomingCourses from './UpcomingCourses';
+import BestRatedCourses from './BestRatedCourses';
+import TrendingCategories from './TrendingCategories';
 
 // Card Component
 const Card = ({ title, count, imageSrc, description, bgColor }) => {
@@ -106,6 +112,42 @@ const Home = () => {
         <section className="featured-section">
           <Container maxWidth={'1200px'}>
             <FeaturedCourse />
+          </Container>
+        </section>
+
+        <section className="newest-section">
+          <Container maxWidth={'1200px'}>
+            <NewestCourse />
+          </Container>
+        </section>
+
+        <section className="bundles-section">
+          <Container maxWidth={'1200px'}>
+            <LatestBundles />
+          </Container>
+        </section>
+
+        <section className="bundles-section">
+          <Container maxWidth={'1200px'}>
+            <UpcomingCourses />
+          </Container>
+        </section>
+
+        <section className="bundles-section">
+          <Container maxWidth={'1200px'}>
+            <BestRatedCourses />
+          </Container>
+        </section>
+
+        <section className="newest-section">
+          <Container maxWidth={'1200px'}>
+            <TrendingCategories />
+          </Container>
+        </section>
+
+        <section className="newest-section">
+          <Container maxWidth={'1200px'}>
+            <Image src={newSec} />
           </Container>
         </section>
       </div>

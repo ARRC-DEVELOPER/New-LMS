@@ -19,6 +19,59 @@
   transform: translateY(-25px);
 }
 
+/* Featured Section */
 .slick-dots.custom-dots {
   bottom: -80px;
+}
+
+.slick-slide {
+  padding: 0 10px;
+}
+
+.slide-box {
+  border-radius: 15px;
+  overflow: hidden;
+  border: 2px solid red;
+  margin: 0 auto;
+}
+
+/* Newest Courses Section */
+.newest-section,
+.bundles-section {
+  margin-top: 100px;
+}
+
+.new-course-card {
+  box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.1);
+  transition: all 0.8s;
+}
+
+.new-course-card:hover {
+  transform: translateY(-20px);
+}
+
+/* Treding Courses */
+.trending-count {
+  position: relative;
+  top: -20px;
+  border-radius: 25px;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  font-size: 12px;
+  width: 50%;
+  padding: 10px;
+  margin: auto;
+}
+
+.trending-course-card {
+  transition: all 0.8s;
+}
+
+.trending-course-card:hover {
+  transform: translateY(-20px);
+
+  .trending-count {
+    background-color: #162a47;
+    color: white;
+  }
 }

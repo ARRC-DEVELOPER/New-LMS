@@ -55,7 +55,7 @@ function CustomDot({ onClick, index, currentSlide }) {
   );
 }
 
-const TrendingCategories = () => {
+const NewestCourse = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const courses = [
@@ -116,7 +116,7 @@ const TrendingCategories = () => {
   ];
 
   //   Conditional Dot rendering
-  const initialCards = 6;
+  const initialCards = 3;
   const numDots = Math.ceil((courses.length - initialCards + 1) / 1);
 
   const settings = {
@@ -148,69 +148,73 @@ const TrendingCategories = () => {
   return (
     <Box p={4}>
       <Heading as="h2" size="lg" mb={4}>
-        Trending Categories
+        Newest Courses
       </Heading>
-      <Text mb={4}>#Browse trending & popular learning topics</Text>
+      <Text mb={4}>#Recently published courses</Text>
 
       <Slider {...settings}>
         {courses.map((course, index) => (
           <Box
-            h="250px"
+            h="450px"
             key={index}
             borderRadius="15px"
             overflow="hidden"
             marginTop={5}
-            border={"2px solid red"}
+            className='new-course-card'
           >
-            {/* Card Section */}
-            <Box
-              w={'full'}
-              h={'full'}
-              overflow="hidden"
-              align="flex-start"
-              p={4}
-              zIndex={2}
-            >
-              <VStack spacing="4" align={'flex-start'}>
-                <Heading size="md" as="h4">
-                  {course.title}
-                </Heading>
+              {/* Card Section */}
+              <Box
+                w={'full'}
+                h={'full'}
+                overflow="hidden"
+                align="flex-start"
+                p={4}
+                zIndex={2}
+              >
+                <VStack spacing="4" align={'flex-start'}>
+                  <Heading size="md" as="h4">
+                    {course.title}
+                  </Heading>
 
-                <Text fontSize="sm" color="gray.500" textAlign="left">
-                  {course.description}
-                </Text>
-
-                <HStack spacing={'-3'} display={'flex'} alignItems="flex-start">
-                  <Icon as={StarIcon} color="yellow.500" boxSize={4} mr={2} />
-                  <Icon as={StarIcon} color="yellow.500" boxSize={4} mr={2} />
-                  <Icon as={StarIcon} color="yellow.500" boxSize={4} mr={2} />
-                  <Icon as={StarIcon} color="yellow.500" boxSize={4} mr={2} />
-                  <Text fontSize="sm" color="black" fontWeight="bold">
-                    {course.rating}
+                  <Text fontSize="sm" color="gray.500" textAlign="left">
+                    {course.description}
                   </Text>
-                </HStack>
 
-                <Box display={'flex'} alignItems="flex-start">
-                  <HStack spacing="4">
-                    <Flex align="center">
-                      <Icon as={FaClock} mr="2" />
-                      <Text fontSize="sm" textAlign="left">
-                        {course.hours}
-                      </Text>
-                    </Flex>
-                    <Flex align="center">
-                      <Icon as={FaCalendarAlt} mr="2" />
-                      <Text fontSize="sm" textAlign="left">
-                        {course.date}
-                      </Text>
-                    </Flex>
+                  <HStack
+                    spacing={'-3'}
+                    display={'flex'}
+                    alignItems="flex-start"
+                  >
+                    <Icon as={StarIcon} color="yellow.500" boxSize={4} mr={2} />
+                    <Icon as={StarIcon} color="yellow.500" boxSize={4} mr={2} />
+                    <Icon as={StarIcon} color="yellow.500" boxSize={4} mr={2} />
+                    <Icon as={StarIcon} color="yellow.500" boxSize={4} mr={2} />
+                    <Text fontSize="sm" color="black" fontWeight="bold">
+                      {course.rating}
+                    </Text>
                   </HStack>
-                  <Button colorScheme="teal" size="lg" variant="outline">
-                    {course.price}
-                  </Button>
-                </Box>
-              </VStack>
-            </Box>
+
+                  <Box display={'flex'} alignItems="flex-start">
+                    <HStack spacing="4">
+                      <Flex align="center">
+                        <Icon as={FaClock} mr="2" />
+                        <Text fontSize="sm" textAlign="left">
+                          {course.hours}
+                        </Text>
+                      </Flex>
+                      <Flex align="center">
+                        <Icon as={FaCalendarAlt} mr="2" />
+                        <Text fontSize="sm" textAlign="left">
+                          {course.date}
+                        </Text>
+                      </Flex>
+                    </HStack>
+                    <Button colorScheme="teal" size="lg" variant="outline">
+                      {course.price}
+                    </Button>
+                  </Box>
+                </VStack>
+              </Box>
           </Box>
         ))}
       </Slider>
@@ -218,4 +222,4 @@ const TrendingCategories = () => {
   );
 };
 
-export default TrendingCategories;
+export default NewestCourse;
