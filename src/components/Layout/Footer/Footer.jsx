@@ -16,7 +16,8 @@ import {
 import { FaInstagram, FaWhatsapp, FaTwitter, FaFacebook } from 'react-icons/fa';
 import { HiPhone, HiMail } from 'react-icons/hi';
 
-import WhiteLogo from '../../../assets/website-logo-white.png';
+// importing images
+import Logo from '../../../assets/new-logo-white.png';
 import ArrcImg from '../../../assets/arrc.png';
 
 const Footer = () => {
@@ -49,7 +50,7 @@ const Footer = () => {
               bgColor="white"
               borderRadius="full"
               placeholder="Enter your email here"
-              pr="120px" 
+              pr="120px"
             />
             <Button
               colorScheme="green"
@@ -57,7 +58,7 @@ const Footer = () => {
               px={8}
               py={6}
               position="absolute"
-              right="3" 
+              right="3"
               zIndex={2}
             >
               Join
@@ -149,12 +150,18 @@ const Footer = () => {
                 </Link>
               </Stack>
             </Box>
-            <Box flex={1} marginLeft={"-100px"}  display={'flex'} flexDir={'column'} alignItems={"center"}>
+            <Box
+              flex={1}
+              marginLeft={'-100px'}
+              display={'flex'}
+              flexDir={'column'}
+              alignItems={'center'}
+            >
               <Text fontSize="lg" fontWeight="bold">
                 Purchase Rocket LMS
               </Text>
               <Link href="https://codecanyon.net/" title="Notnt" isExternal>
-                <Image src={ArrcImg} alt="Envato" mt={2} />
+                <Image src={ArrcImg} filter="brightness(0) invert(1)" alt="Envato" mt={2} />
               </Link>
             </Box>
           </Stack>
@@ -167,7 +174,16 @@ const Footer = () => {
             borderColor="gray.600"
             pt={4}
           >
-            <Image src={WhiteLogo} alt="footer logo" />
+            <Box
+              display={'flex'}
+              justifyContent={'center'}
+              alignItems={'center'}
+            >
+              <Image src={Logo} alt="Logo" boxSize="40px" />
+              <Heading size="md" fontWeight="bold">
+                New LMS
+              </Heading>
+            </Box>
 
             <Flex align="center">
               <Link href="https://www.instagram.com/" isExternal>

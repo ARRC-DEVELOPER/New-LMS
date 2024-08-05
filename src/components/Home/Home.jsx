@@ -8,7 +8,7 @@ import teacher from '../../assets/teacher.svg';
 import student from '../../assets/student.svg';
 import video from '../../assets/video.svg';
 import course from '../../assets/course.svg';
-import newSec from "../../assets/become_instructor_banner.png";
+import newSec from '../../assets/become_instructor_banner.png';
 
 import {
   Container,
@@ -24,6 +24,10 @@ import LatestBundles from './LatestBundles';
 import UpcomingCourses from './UpcomingCourses';
 import BestRatedCourses from './BestRatedCourses';
 import TrendingCategories from './TrendingCategories';
+import BecomeAnInstructor from './BecomeAnInstructor';
+import QuestionForum from './QuestionForum';
+import FindBestInstructor from './FindBestInstructor';
+import HomeVideo from './HomeVideo';
 
 // Card Component
 const Card = ({ title, count, imageSrc, description, bgColor }) => {
@@ -149,6 +153,28 @@ const Home = () => {
           <Container maxWidth={'1200px'}>
             <Image src={newSec} />
           </Container>
+        </section>
+
+        <section className="newest-section">
+          <Container maxWidth={'1200px'}>
+            <BecomeAnInstructor />
+          </Container>
+        </section>
+
+        <section className="newest-section">
+          <Container maxWidth={'1200px'}>
+            <QuestionForum />
+          </Container>
+        </section>
+
+        <section className="newest-section">
+          <Container maxWidth={'1200px'}>
+            <FindBestInstructor />
+          </Container>
+        </section>
+
+        <section>
+          <HomeVideo />
         </section>
       </div>
     </section>

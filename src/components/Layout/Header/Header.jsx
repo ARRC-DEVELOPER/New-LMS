@@ -41,7 +41,7 @@ const Header = () => {
                       onMouseEnter={event => event.currentTarget.focus()}
                       variant={'ghost'}
                     >
-                      USD ($)
+                      INR (₹)
                     </MenuButton>
                     <Portal>
                       <MenuList
@@ -52,9 +52,8 @@ const Header = () => {
                         minW="240px"
                         boxShadow="xl"
                       >
+                        <MenuItem>INR (₹)</MenuItem> 
                         <MenuItem>USD ($)</MenuItem>
-                        <MenuItem>EUR (€)</MenuItem>
-                        <MenuItem>INR (₹)</MenuItem>
                       </MenuList>
                     </Portal>
                   </Menu>
