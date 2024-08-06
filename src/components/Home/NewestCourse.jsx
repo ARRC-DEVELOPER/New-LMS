@@ -84,7 +84,7 @@ const NewestCourse = () => {
       hours: '1:30 Hours',
       date: '15 Mar 2023',
       image: secondCourse,
-      price: '$100',
+      price: '₹ 8000',
     },
     {
       title: 'Fourth Course',
@@ -93,7 +93,7 @@ const NewestCourse = () => {
       hours: '2:00 Hours',
       date: '10 Apr 2022',
       image: secondCourse,
-      price: '$50',
+      price: '₹ 8000',
     },
     {
       title: 'Fourth Course',
@@ -102,7 +102,7 @@ const NewestCourse = () => {
       hours: '2:00 Hours',
       date: '10 Apr 2022',
       image: secondCourse,
-      price: '$50',
+      price: '₹ 8000',
     },
     {
       title: 'Fourth Course',
@@ -111,7 +111,7 @@ const NewestCourse = () => {
       hours: '2:00 Hours',
       date: '10 Apr 2022',
       image: secondCourse,
-      price: '$50',
+      price: '₹ 8000',
     },
   ];
 
@@ -160,61 +160,57 @@ const NewestCourse = () => {
             borderRadius="15px"
             overflow="hidden"
             marginTop={5}
-            className='new-course-card'
+            className="new-course-card"
           >
-              {/* Card Section */}
-              <Box
-                w={'full'}
-                h={'full'}
-                overflow="hidden"
-                align="flex-start"
-                p={4}
-                zIndex={2}
-              >
-                <VStack spacing="4" align={'flex-start'}>
-                  <Heading size="md" as="h4">
-                    {course.title}
-                  </Heading>
+            {/* Card Section */}
+            <Box
+              w={'full'}
+              h={'full'}
+              overflow="hidden"
+              align="flex-start"
+              p={4}
+              zIndex={2}
+            >
+              <VStack spacing="4" align={'flex-start'}>
+                <Heading size="md" as="h4">
+                  {course.title}
+                </Heading>
 
-                  <Text fontSize="sm" color="gray.500" textAlign="left">
-                    {course.description}
+                <Text fontSize="sm" color="gray.500" textAlign="left">
+                  {course.description}
+                </Text>
+
+                <HStack spacing={'-3'} display={'flex'} alignItems="flex-start">
+                  <Icon as={StarIcon} color="yellow.500" boxSize={4} mr={2} />
+                  <Icon as={StarIcon} color="yellow.500" boxSize={4} mr={2} />
+                  <Icon as={StarIcon} color="yellow.500" boxSize={4} mr={2} />
+                  <Icon as={StarIcon} color="yellow.500" boxSize={4} mr={2} />
+                  <Text fontSize="sm" color="black" fontWeight="bold">
+                    {course.rating}
                   </Text>
+                </HStack>
 
-                  <HStack
-                    spacing={'-3'}
-                    display={'flex'}
-                    alignItems="flex-start"
-                  >
-                    <Icon as={StarIcon} color="yellow.500" boxSize={4} mr={2} />
-                    <Icon as={StarIcon} color="yellow.500" boxSize={4} mr={2} />
-                    <Icon as={StarIcon} color="yellow.500" boxSize={4} mr={2} />
-                    <Icon as={StarIcon} color="yellow.500" boxSize={4} mr={2} />
-                    <Text fontSize="sm" color="black" fontWeight="bold">
-                      {course.rating}
-                    </Text>
+                <Box display={'flex'} alignItems="flex-start">
+                  <HStack spacing="4">
+                    <Flex align="center">
+                      <Icon as={FaClock} mr="2" />
+                      <Text fontSize="sm" textAlign="left">
+                        {course.hours}
+                      </Text>
+                    </Flex>
+                    <Flex align="center">
+                      <Icon as={FaCalendarAlt} mr="2" />
+                      <Text fontSize="sm" textAlign="left">
+                        {course.date}
+                      </Text>
+                    </Flex>
                   </HStack>
-
-                  <Box display={'flex'} alignItems="flex-start">
-                    <HStack spacing="4">
-                      <Flex align="center">
-                        <Icon as={FaClock} mr="2" />
-                        <Text fontSize="sm" textAlign="left">
-                          {course.hours}
-                        </Text>
-                      </Flex>
-                      <Flex align="center">
-                        <Icon as={FaCalendarAlt} mr="2" />
-                        <Text fontSize="sm" textAlign="left">
-                          {course.date}
-                        </Text>
-                      </Flex>
-                    </HStack>
-                    <Button colorScheme="teal" size="lg" variant="outline">
-                      {course.price}
-                    </Button>
-                  </Box>
-                </VStack>
-              </Box>
+                  <Button colorScheme="teal" size="lg" variant="outline">
+                    {course.price}
+                  </Button>
+                </Box>
+              </VStack>
+            </Box>
           </Box>
         ))}
       </Slider>

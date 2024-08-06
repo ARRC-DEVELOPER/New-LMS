@@ -30,7 +30,6 @@ import { Link } from 'react-router-dom';
 import Logo from '../../../assets/logo.png';
 
 const Navbar = () => {
-  // const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedLanguage, setSelectedLanguage] = useState('English');
 
   const handleLanguageChange = language => {
@@ -41,23 +40,24 @@ const Navbar = () => {
   return (
     <Box
       as="header"
-      marginTop={'1px'}
-      position="sticky"
       width="100%"
       bg="white"
-      zIndex="1"
+      zIndex="1000"
       shadow="md"
       p={4}
+      position="fixed"
+      top={0}
+      left={0}
+      right={0}
     >
       <Container maxWidth="1200px">
         <Flex alignItems="center" justifyContent="space-between">
           <Stack direction="row" alignItems="center" spacing={4}>
             <HStack gap={-1}>
-            <Image src={Logo} alt="Logo" boxSize="40px" />
-            <Heading size="md" fontWeight="bold" color={'#13243d'}>
-              New LMS
-            </Heading>
-
+              <Image src={Logo} alt="Logo" boxSize="40px" />
+              <Heading size="md" fontWeight="bold" color={'#13243d'}>
+                New LMS
+              </Heading>
             </HStack>
 
             <Menu>

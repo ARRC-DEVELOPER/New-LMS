@@ -89,7 +89,7 @@ const LatestBundles = () => {
       hours: '1:30 Hours',
       date: '15 Mar 2023',
       image: secondCourse,
-      price: '$100',
+      price: '₹ 8000',
     },
     {
       title: 'Fourth Course',
@@ -98,7 +98,7 @@ const LatestBundles = () => {
       hours: '2:00 Hours',
       date: '10 Apr 2022',
       image: secondCourse,
-      price: '$50',
+      price: '₹ 8000',
     },
     {
       title: 'Fourth Course',
@@ -107,7 +107,7 @@ const LatestBundles = () => {
       hours: '2:00 Hours',
       date: '10 Apr 2022',
       image: secondCourse,
-      price: '$50',
+      price: '₹ 8000',
     },
     {
       title: 'Fourth Course',
@@ -116,7 +116,7 @@ const LatestBundles = () => {
       hours: '2:00 Hours',
       date: '10 Apr 2022',
       image: secondCourse,
-      price: '$50',
+      price: '₹ 8000',
     },
   ];
 

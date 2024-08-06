@@ -9,6 +9,8 @@ import student from '../../assets/student.svg';
 import video from '../../assets/video.svg';
 import course from '../../assets/course.svg';
 import newSec from '../../assets/become_instructor_banner.png';
+import certificateBanner from '../../assets/validate_certificates_banner.png';
+import meetingBanner from '../../assets/reserve_a_meeting.png';
 
 import {
   Container,
@@ -28,11 +30,14 @@ import BecomeAnInstructor from './BecomeAnInstructor';
 import QuestionForum from './QuestionForum';
 import FindBestInstructor from './FindBestInstructor';
 import HomeVideo from './HomeVideo';
+import RewardSection from './RewardSection';
+import Testimonials from './Testimonials';
+import Organization from './Organization';
 
 // Card Component
 const Card = ({ title, count, imageSrc, description, bgColor }) => {
   return (
-    <Box className="introCard" p={5} align="center">
+    <Box className="introCard" p={5} align="center" mt={'70px'}>
       <Image
         borderRadius={'25px'}
         src={imageSrc}
@@ -90,6 +95,7 @@ const Home = () => {
       bgColor: 'linear-gradient(135deg, #ff0844 0%, #ffb199 100%)',
     },
   ];
+  
   return (
     <section className="home">
       <div className="container">
@@ -175,6 +181,29 @@ const Home = () => {
 
         <section>
           <HomeVideo />
+        </section>
+
+        <section className="newest-section">
+          <Container maxWidth={'1200px'} mb={20}>
+            <RewardSection />
+          </Container>
+        </section>
+
+        <section>
+          <Container maxWidth={'1200px'} mb={20}>
+            <Box display={'flex'} justifyContent={'center'} gap={10}>
+              <Image src={certificateBanner} />
+              <Image src={meetingBanner} />
+            </Box>
+          </Container>
+        </section>
+
+        <section>
+          <Testimonials />
+        </section>
+
+        <section className="newest-section">
+          <Organization />
         </section>
       </div>
     </section>
