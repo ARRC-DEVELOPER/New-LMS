@@ -6,6 +6,8 @@ import Home from './components/Home/Home';
 import Header from './components/Layout/Header/Header';
 import Footer from './components/Layout/Footer/Footer';
 import Navbar from './components/Layout/Header/Navbar';
+import Login from './components/Auth/Login';
+import Signup from './components/Auth/Signup';
 
 const App = () => {
   return (
@@ -17,6 +19,8 @@ const App = () => {
         <Routes>
 
           <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
 
         </Routes>
         <Footer />

@@ -44,11 +44,12 @@ const Navbar = () => {
       bg="white"
       zIndex="1000"
       shadow="md"
-      p={4}
-      position="fixed"
+      mt={'1'}
+      position={'sticky'}
       top={0}
       left={0}
       right={0}
+      p={4}
     >
       <Container maxWidth="1200px">
         <Flex alignItems="center" justifyContent="space-between">
@@ -94,9 +95,11 @@ const Navbar = () => {
           </Stack>
 
           <Stack direction="row" alignItems="center">
-            <Button colorScheme={'green'} variant="solid">
-              Start Learning
-            </Button>
+            <Link to="/login">
+              <Button colorScheme={'green'} variant="solid">
+                Start Learning
+              </Button>
+            </Link>
           </Stack>
         </Flex>
       </Container>

@@ -1,28 +1,23 @@
-import React, { useState } from 'react';
 import {
   Box,
+  Container,
   Flex,
   Heading,
-  Text,
-  VStack,
-  Button,
   HStack,
   Icon,
+  Image,
+  Text,
 } from '@chakra-ui/react';
+import React, { Fragment, useState } from 'react';
 import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-
-// Import images or use URLs
-import firstCourse from '../../assets/course1.jpg';
-import secondCourse from '../../assets/course2.jpg';
-// import thirdCourse from '../../assets/course3.jpg';
-// import fourthCourse from '../../assets/course4.jpg'; // assuming you have a fourth image
 
 // importing css
 import './home.css';
-import { FaCalendarAlt, FaClock } from 'react-icons/fa';
+
 import { StarIcon } from '@chakra-ui/icons';
+
+// importing images
+import profilePic from '../../assets/profile_picture.jpg';
 
 // Custom dot component
 function CustomDot({ onClick, index, currentSlide }) {
@@ -55,7 +50,7 @@ function CustomDot({ onClick, index, currentSlide }) {
   );
 }
 
-const TrendingCategories = () => {
+const Testimonials = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const courses = [
@@ -65,7 +60,6 @@ const TrendingCategories = () => {
       rating: '5.0',
       hours: '3:30 Hours',
       date: '1 Mar 2022',
-      image: firstCourse,
       price: 'Free',
     },
     {
@@ -74,7 +68,6 @@ const TrendingCategories = () => {
       rating: '4.8',
       hours: '2:45 Hours',
       date: '15 Feb 2022',
-      image: secondCourse,
       price: 'Subscribe',
     },
     {
@@ -83,8 +76,7 @@ const TrendingCategories = () => {
       rating: '5.0',
       hours: '1:30 Hours',
       date: '15 Mar 2023',
-      image: secondCourse,
-      price: '$100',
+      price: '₹ 8000',
     },
     {
       title: 'Fourth Course',
@@ -92,8 +84,7 @@ const TrendingCategories = () => {
       rating: '4.5',
       hours: '2:00 Hours',
       date: '10 Apr 2022',
-      image: secondCourse,
-      price: '$50',
+      price: '₹ 8000',
     },
     {
       title: 'Fourth Course',
@@ -101,8 +92,7 @@ const TrendingCategories = () => {
       rating: '4.5',
       hours: '2:00 Hours',
       date: '10 Apr 2022',
-      image: secondCourse,
-      price: '$50',
+      price: '₹ 8000',
     },
     {
       title: 'Fourth Course',
@@ -110,13 +100,12 @@ const TrendingCategories = () => {
       rating: '4.5',
       hours: '2:00 Hours',
       date: '10 Apr 2022',
-      image: secondCourse,
-      price: '$50',
+      price: '₹ 8000',
     },
   ];
 
   //   Conditional Dot rendering
-  const initialCards = 6;
+  const initialCards = 3;
   const numDots = Math.ceil((courses.length - initialCards + 1) / 1);
 
   const settings = {
@@ -146,76 +135,133 @@ const TrendingCategories = () => {
   };
 
   return (
-    <Box p={4}>
-      <Heading as="h2" size="lg" mb={4}>
-        Trending Categories
-      </Heading>
-      <Text mb={4}>#Browse trending & popular learning topics</Text>
-
-      <Slider {...settings}>
-        {courses.map((course, index) => (
+    <Fragment>
+      <Container maxW={'1200px'}>
+        <Box p={4} position={'relative'}>
           <Box
-            h="250px"
-            key={index}
-            borderRadius="15px"
-            overflow="hidden"
-            marginTop={5}
-            border={"2px solid red"}
-          >
-            {/* Card Section */}
+            className="testimonial-gradient-box left-gradient-box"
+            position={'absolute'}
+          ></Box>
+          <Box
+            className="testimonial-gradient-box right-gradient-box"
+            position={'absolute'}
+          ></Box>
+
+          <Box>
             <Box
-              w={'full'}
-              h={'full'}
-              overflow="hidden"
-              align="flex-start"
-              p={4}
-              zIndex={2}
-            >
-              <VStack spacing="4" align={'flex-start'}>
-                <Heading size="md" as="h4">
-                  {course.title}
-                </Heading>
-
-                <Text fontSize="sm" color="gray.500" textAlign="left">
-                  {course.description}
-                </Text>
-
-                <HStack spacing={'-3'} display={'flex'} alignItems="flex-start">
-                  <Icon as={StarIcon} color="yellow.500" boxSize={4} mr={2} />
-                  <Icon as={StarIcon} color="yellow.500" boxSize={4} mr={2} />
-                  <Icon as={StarIcon} color="yellow.500" boxSize={4} mr={2} />
-                  <Icon as={StarIcon} color="yellow.500" boxSize={4} mr={2} />
-                  <Text fontSize="sm" color="black" fontWeight="bold">
-                    {course.rating}
-                  </Text>
-                </HStack>
-
-                <Box display={'flex'} alignItems="flex-start">
-                  <HStack spacing="4">
-                    <Flex align="center">
-                      <Icon as={FaClock} mr="2" />
-                      <Text fontSize="sm" textAlign="left">
-                        {course.hours}
-                      </Text>
-                    </Flex>
-                    <Flex align="center">
-                      <Icon as={FaCalendarAlt} mr="2" />
-                      <Text fontSize="sm" textAlign="left">
-                        {course.date}
-                      </Text>
-                    </Flex>
-                  </HStack>
-                  <Button colorScheme="teal" size="lg" variant="outline">
-                    {course.price}
-                  </Button>
-                </Box>
-              </VStack>
-            </Box>
+              className="testimonial-gradient-box bottom-gradient-box"
+              position={'absolute'}
+            ></Box>
           </Box>
-        ))}
-      </Slider>
-    </Box>
+
+          <Box
+            w={'full'}
+            display={'flex'}
+            flexDir={'column'}
+            justifyContent={'center'}
+            alignItems={'center'}
+            zIndex={'8000000'}
+          >
+            <Heading
+              as="h2"
+              fontSize={'24px'}
+              fontWeight={'bold'}
+              color={'#1f3b64'}
+            >
+              Testimonials
+            </Heading>
+            <Text mt={'5px'} fontSize={'14px'} color={'#818894'}>
+              #What our customers say about us
+            </Text>
+          </Box>
+
+          <Box marginTop={'15px'}>
+            <Slider {...settings}>
+              {courses.map((course, index) => (
+                <Box position={'relative'} paddingTop={'50px'}>
+                  <Box className="testimonial-user-avatar">
+                    <Image src={profilePic} className="image-cover" />
+                  </Box>
+                  <Box
+                    h="250px"
+                    key={index}
+                    borderRadius="15px"
+                    overflow="hidden"
+                    marginTop={5}
+                    position={'relative'}
+                    className="testimonial-card"
+                    bgColor={'white'}
+                  >
+                    {/* Card Section */}
+                    <Box
+                      display={'flex'}
+                      flexDirection={'column'}
+                      alignItems={'center'}
+                      justifyItems={'center'}
+                      p={5}
+                      mt={42}
+                    >
+                      <Heading
+                        as="h4"
+                        color={'#1f3b64'}
+                        fontWeight={700}
+                        fontSize={'1rem'}
+                      >
+                        Ryan Newaman
+                      </Heading>
+
+                      <Text size={'sm'} color={'gray'}>
+                        Data Analyst at Microsoft
+                      </Text>
+
+                      <HStack
+                        spacing={'-3'}
+                        display={'flex'}
+                        alignItems="flex-start"
+                        mt={'15px'}
+                      >
+                        <Icon
+                          as={StarIcon}
+                          color="yellow.500"
+                          boxSize={4}
+                          mr={2}
+                        />
+                        <Icon
+                          as={StarIcon}
+                          color="yellow.500"
+                          boxSize={4}
+                          mr={2}
+                        />
+                        <Icon
+                          as={StarIcon}
+                          color="yellow.500"
+                          boxSize={4}
+                          mr={2}
+                        />
+                        <Icon
+                          as={StarIcon}
+                          color="yellow.500"
+                          boxSize={4}
+                          mr={2}
+                        />
+                      </HStack>
+
+                      <Text mt={'25px'} color={'gray'} textAlign={'center'}>
+                        "We're loving it. New LMS is both perfect and highly
+                        adaptable."
+                      </Text>
+                    </Box>
+
+                    <Box className="testimonial-bottom-gradient"></Box>
+                  </Box>
+                </Box>
+              ))}
+            </Slider>
+          </Box>
+        </Box>
+      </Container>
+    </Fragment>
   );
 };
 
-export default TrendingCategories;
+export default Testimonials;

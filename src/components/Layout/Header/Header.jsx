@@ -17,6 +17,7 @@ import {
 import { ChevronDownIcon, SearchIcon } from '@chakra-ui/icons';
 import { FaBell, FaShoppingCart } from 'react-icons/fa';
 import { Fragment } from 'react';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
@@ -52,7 +53,7 @@ const Header = () => {
                         minW="240px"
                         boxShadow="xl"
                       >
-                        <MenuItem>INR (₹)</MenuItem> 
+                        <MenuItem>INR (₹)</MenuItem>
                         <MenuItem>USD ($)</MenuItem>
                       </MenuList>
                     </Portal>
@@ -123,10 +124,14 @@ const Header = () => {
                 </Box>
 
                 <Box>
-                  <Button mr="2" variant={''}>
-                    Login
-                  </Button>
-                  <Button variant={''}>Register</Button>
+                  <Link to={'/login'}>
+                    <Button mr="2" variant={''}>
+                      Login
+                    </Button>
+                  </Link>
+                  <Link to={'/signup'}>
+                    <Button variant={''}>Register</Button>
+                  </Link>
                 </Box>
               </Box>
             </Flex>

@@ -146,12 +146,21 @@ const Testimonials = () => {
             className="testimonial-gradient-box right-gradient-box"
             position={'absolute'}
           ></Box>
+
+          <Box>
+            <Box
+              className="testimonial-gradient-box bottom-gradient-box"
+              position={'absolute'}
+            ></Box>
+          </Box>
+
           <Box
             w={'full'}
             display={'flex'}
             flexDir={'column'}
             justifyContent={'center'}
             alignItems={'center'}
+            zIndex={'8000000'}
           >
             <Heading
               as="h2"
@@ -181,6 +190,7 @@ const Testimonials = () => {
                     marginTop={5}
                     position={'relative'}
                     className="testimonial-card"
+                    bgColor={'white'}
                   >
                     {/* Card Section */}
                     <Box
@@ -237,7 +247,7 @@ const Testimonials = () => {
                       </HStack>
 
                       <Text mt={'25px'} color={'gray'} textAlign={'center'}>
-                        "We're loving it. Rocket LMS is both perfect and highly
+                        "We're loving it. New LMS is both perfect and highly
                         adaptable."
                       </Text>
                     </Box>
