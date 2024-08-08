@@ -61,7 +61,7 @@ function CustomDot({ onClick, index, currentSlide }) {
   );
 }
 
-const NewestCourse = () => {
+const BestSellingCourses = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const courses = [
@@ -166,10 +166,10 @@ const NewestCourse = () => {
   return (
     <Box p={4}>
       <Heading as="h2" fontSize={'24px'} fontWeight={'bold'} color={'#1f3b64'}>
-        Newest Courses
+        Bestselling Courses
       </Heading>
       <Text mt={'5px'} fontSize={'14px'} color={'#818894'}>
-        #Recently published courses
+        #Learn from bestselling courses
       </Text>
 
       <Slider {...settings}>
@@ -280,4 +280,4 @@ const NewestCourse = () => {
   );
 };
 
-export default NewestCourse;
+export default BestSellingCourses;

@@ -33,6 +33,10 @@ import HomeVideo from './HomeVideo';
 import RewardSection from './RewardSection';
 import Testimonials from './Testimonials';
 import Organization from './Organization';
+import BestSellingCourses from './BestSellingCourses';
+import FreeCourses from './FreeCourses';
+import DiscountedCourses from './DiscountedCourses';
+import StoreProducts from './StoreProducts';
 
 // Card Component
 const Card = ({ title, count, imageSrc, description, bgColor }) => {
@@ -95,7 +99,7 @@ const Home = () => {
       bgColor: 'linear-gradient(135deg, #ff0844 0%, #ffb199 100%)',
     },
   ];
-  
+
   return (
     <section className="home">
       <div className="container">
@@ -155,9 +159,33 @@ const Home = () => {
           </Container>
         </section>
 
+        <section className="bundles-section">
+          <Container maxWidth={'1200px'}>
+            <BestSellingCourses />
+          </Container>
+        </section>
+
+        <section className="bundles-section">
+          <Container maxWidth={'1200px'}>
+            <FreeCourses />
+          </Container>
+        </section>
+
         <section className="newest-section">
           <Container maxWidth={'1200px'}>
             <Image src={newSec} />
+          </Container>
+        </section>
+
+        <section className="bundles-section">
+          <Container maxWidth={'1200px'}>
+            <DiscountedCourses />
+          </Container>
+        </section>
+
+        <section className="bundles-section">
+          <Container maxWidth={'1200px'}>
+            <StoreProducts />
           </Container>
         </section>
 

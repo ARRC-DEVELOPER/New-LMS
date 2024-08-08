@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   Flex,
@@ -8,22 +8,30 @@ import {
   Button,
   HStack,
   Icon,
+  Image,
 } from '@chakra-ui/react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+
+// Import images or use URLs
+import firstCourse from '../../assets/Installment.jpg';
+import firstInstructor from '../../assets/instructor_profile.png';
+
+import secondCourse from '../../assets/new_live_system.jpg';
+import secondInstructor from '../../assets/user-profile2.png';
+
+import thirdCourse from '../../assets/course1.jpg';
+import thirdInstructor from '../../assets/user-profile3.png';
+
+// importing css
 import './home.css';
 import { FaCalendarAlt, FaClock } from 'react-icons/fa';
 import { StarIcon } from '@chakra-ui/icons';
-
-// Import images or use URLs
-import firstCourse from '../../assets/course1.jpg';
-import secondCourse from '../../assets/course2.jpg';
-// import thirdCourse from '../../assets/course3.jpg';
-// import fourthCourse from '../../assets/course4.jpg'; // assuming you have a fourth image
+import { Link } from 'react-router-dom';
 
 // Custom dot component
-function CustomDot({ onClick, index, currentSlide, autoplay }) {
+function CustomDot({ onClick, index, currentSlide }) {
   return (
     <Flex
       direction="column"
@@ -46,13 +54,7 @@ function CustomDot({ onClick, index, currentSlide, autoplay }) {
           w={4}
           h={4}
           rounded="full"
-          bg={
-            index === currentSlide
-              ? autoplay
-                ? 'green.500'
-                : 'blue.500'
-              : 'gray.300'
-          }
+          bg={index === currentSlide ? 'green.500' : 'gray.300'}
         />
       </Box>
     </Flex>
@@ -61,46 +63,46 @@ function CustomDot({ onClick, index, currentSlide, autoplay }) {
 
 const UpcomingCourses = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [autoplay, setAutoplay] = useState(true); // State to manage autoplay
 
   const courses = [
     {
       title: 'New Learning Page',
-      instructor: 'Robert Ransdell',
+      instructor: 'Jessica Wray',
+      instructorProfile: firstInstructor,
       rating: '5.0',
       hours: '3:30 Hours',
       date: '1 Mar 2022',
       image: firstCourse,
       price: 'Free',
+      catagory: 'Business Strategy',
     },
     {
       title: 'Advanced Strategies',
       instructor: 'Robert Ransdell',
+      instructorProfile: secondInstructor,
       rating: '4.8',
       hours: '2:45 Hours',
       date: '15 Feb 2022',
       image: secondCourse,
       price: 'Subscribe',
+      catagory: 'Communication',
     },
     {
       title: 'Installment and Secure Host',
       instructor: 'Jessica Wray',
+      instructorProfile: thirdInstructor,
       rating: '5.0',
       hours: '1:30 Hours',
       date: '15 Mar 2023',
-      image: secondCourse,
-      price: '$100',
+      image: thirdCourse,
+      price: '₹ 8000',
+      catagory: 'Communication',
     },
   ];
 
-  // Update autoplay state based on slider events
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setAutoplay(true);
-    }, 8000);
-
-    return () => clearInterval(timer);
-  }, []);
+  //   Conditional Dot rendering
+  const initialCards = 3;
+  const numDots = Math.ceil((courses.length - initialCards + 1) / 1);
 
   const settings = {
     dots: true,
@@ -108,18 +110,21 @@ const UpcomingCourses = () => {
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
-    autoplay: autoplay,
-    autoplaySpeed: 8000,
+    autoplay: true,
+    autoplaySpeed: 6000,
     cssEase: 'linear',
     customPaging: function (i) {
-      return (
-        <CustomDot
-          index={i}
-          currentSlide={currentSlide}
-          onClick={() => setCurrentSlide(i)}
-          autoplay={autoplay}
-        />
-      );
+      if (i < numDots) {
+        return (
+          <CustomDot
+            index={i}
+            currentSlide={currentSlide}
+            onClick={() => setCurrentSlide(i)}
+          />
+        );
+      } else {
+        return <div style={{ display: 'none' }} />;
+      }
     },
     beforeChange: (current, next) => setCurrentSlide(next),
     dotsClass: 'slick-dots custom-dots',
@@ -127,15 +132,17 @@ const UpcomingCourses = () => {
 
   return (
     <Box p={4}>
-      <Heading as="h2" size="lg" mb={4}>
-        Upcoming Courses
+      <Heading as="h2" fontSize={'24px'} fontWeight={'bold'} color={'#1f3b64'}>
+        Upcomming Courses
       </Heading>
-      <Text mb={4}>Courses that will be published soon</Text>
+      <Text mt={'5px'} fontSize={'14px'} color={'#818894'}>
+        Courses that will be published soon
+      </Text>
 
       <Slider {...settings}>
         {courses.map((course, index) => (
           <Box
-            h="450px"
+            // h="600px"
             key={index}
             borderRadius="15px"
             overflow="hidden"
@@ -143,6 +150,12 @@ const UpcomingCourses = () => {
             className="new-course-card"
           >
             {/* Card Section */}
+            <Image
+              h={'300px'}
+              w={'full'}
+              objectFit={'cover'}
+              src={course.image}
+            />
             <Box
               w={'full'}
               h={'full'}
@@ -152,12 +165,33 @@ const UpcomingCourses = () => {
               zIndex={2}
             >
               <VStack spacing="4" align={'flex-start'}>
-                <Heading size="md" as="h4">
+                <Box
+                  display={'flex'}
+                  justifyContent={'center'}
+                  alignItems={'center'}
+                  gap={'1'}
+                >
+                  <Image className="avatar" src={course.instructorProfile} />
+                  <Text fontSize={14} fontWeight={500} color={'#818894'}>
+                    {course.instructor}
+                  </Text>
+                </Box>
+                <Heading
+                  color={'#171347'}
+                  fontWeight={'bold'}
+                  fontSize={16}
+                  as="h3"
+                >
                   {course.title}
                 </Heading>
 
-                <Text fontSize="sm" color="gray.500" textAlign="left">
-                  {course.description}
+                <Text fontSize={14} mt={6} textAlign="left">
+                  in{' '}
+                  <Link
+                    style={{ textDecoration: 'underline', cursor: 'pointer' }}
+                  >
+                    {course.catagory}
+                  </Link>
                 </Text>
 
                 <HStack spacing={'-3'} display={'flex'} alignItems="flex-start">
@@ -165,19 +199,29 @@ const UpcomingCourses = () => {
                   <Icon as={StarIcon} color="yellow.500" boxSize={4} mr={2} />
                   <Icon as={StarIcon} color="yellow.500" boxSize={4} mr={2} />
                   <Icon as={StarIcon} color="yellow.500" boxSize={4} mr={2} />
-                  <Text fontSize="sm" color="black" fontWeight="bold">
+                  <Text
+                    ml={2}
+                    bgColor={'#43d477'}
+                    px={'0.5rem'}
+                    borderRadius={'0.3125rem'}
+                    fontSize={'0.75rem'}
+                    color={'white'}
+                  >
                     {course.rating}
                   </Text>
                 </HStack>
 
-                <Box display={'flex'} alignItems="flex-start">
-                  <HStack spacing="4">
+                <Box w={'full'}>
+                  <HStack justifyContent={'space-between'}>
                     <Flex align="center">
                       <Icon as={FaClock} mr="2" />
                       <Text fontSize="sm" textAlign="left">
                         {course.hours}
                       </Text>
                     </Flex>
+
+                    <Box className="verticle-line"></Box>
+
                     <Flex align="center">
                       <Icon as={FaCalendarAlt} mr="2" />
                       <Text fontSize="sm" textAlign="left">
@@ -185,9 +229,14 @@ const UpcomingCourses = () => {
                       </Text>
                     </Flex>
                   </HStack>
-                  <Button colorScheme="teal" size="lg" variant="outline">
-                    {course.price}
-                  </Button>
+                </Box>
+                <Box
+                  mt={2}
+                  fontSize={'20px'}
+                  color={'#43d477'}
+                  fontWeight={800}
+                >
+                  {course.price}
                 </Box>
               </VStack>
             </Box>

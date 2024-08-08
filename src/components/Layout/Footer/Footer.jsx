@@ -158,7 +158,7 @@ const Footer = () => {
               alignItems={'center'}
             >
               <Text fontSize="lg" fontWeight="bold">
-                Purchase Rocket LMS
+                Purchase New LMS
               </Text>
               <Link href="https://codecanyon.net/" title="Notnt" isExternal>
                 <Image src={ArrcImg} filter="brightness(0) invert(1)" alt="Envato" mt={2} />

@@ -61,7 +61,7 @@ function CustomDot({ onClick, index, currentSlide }) {
   );
 }
 
-const NewestCourse = () => {
+const DiscountedCourses = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const courses = [
@@ -109,28 +109,6 @@ const NewestCourse = () => {
       price: '₹ 8000',
       catagory: 'Communication',
     },
-    {
-      title: 'Fourth Course',
-      instructor: 'Another Instructor',
-      instructorProfile: secondInstructor,
-      rating: '4.5',
-      hours: '2:00 Hours',
-      date: '10 Apr 2022',
-      image: secondCourse,
-      price: '₹ 8000',
-      catagory: 'Communication',
-    },
-    {
-      title: 'Fourth Course',
-      instructor: 'Another Instructor',
-      instructorProfile: secondInstructor,
-      rating: '4.5',
-      hours: '2:00 Hours',
-      date: '10 Apr 2022',
-      image: secondCourse,
-      price: '₹ 8000',
-      catagory: 'Communication',
-    },
   ];
 
   //   Conditional Dot rendering
@@ -166,10 +144,10 @@ const NewestCourse = () => {
   return (
     <Box p={4}>
       <Heading as="h2" fontSize={'24px'} fontWeight={'bold'} color={'#1f3b64'}>
-        Newest Courses
+        Discounted Courses
       </Heading>
       <Text mt={'5px'} fontSize={'14px'} color={'#818894'}>
-        #Recently published courses
+        #Get courses at the latest price
       </Text>
 
       <Slider {...settings}>
@@ -280,4 +258,4 @@ const NewestCourse = () => {
   );
 };
 
-export default NewestCourse;
+export default DiscountedCourses;

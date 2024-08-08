@@ -45,6 +45,19 @@
 }
 
 /* Newest Courses Section */
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.verticle-line {
+  height: 20px;
+  border-left: 2px solid #ececec;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
 .newest-section,
 .bundles-section {
   margin-top: 100px;
@@ -84,6 +97,29 @@
     color: white;
   }
 }
+
+/* Store Product section */
+/* .hover-card-action {
+  bottom: -20px;
+  right: 20px;
+  opacity: 0;
+  position: absolute;
+  transform: translateY(150%);
+  transition: all 0.3s ease;
+  z-index: 11;
+} */
+
+.btn-add-product-to-cart {
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  box-shadow: 0 10px 15px 0 rgba(67, 212, 119, 0.3);
+  background-color: #43d477 !important;
+  border-radius: 50% !important;
+  color: #ffffff;
+}
+
+
 
 /* Brvomr an Instructor section */
 .instructor-right-box {

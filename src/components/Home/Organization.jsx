@@ -3,8 +3,6 @@ import {
   Container,
   Flex,
   Heading,
-  HStack,
-  Icon,
   Image,
   Text,
 } from '@chakra-ui/react';
@@ -14,10 +12,7 @@ import Slider from 'react-slick';
 // importing css
 import './home.css';
 
-import { StarIcon } from '@chakra-ui/icons';
-
 // importing images
-import profilePic from '../../assets/profile_picture.jpg';
 import teacher from '../../assets/teacher.svg';
 import student from '../../assets/student.svg';
 import video from '../../assets/video.svg';

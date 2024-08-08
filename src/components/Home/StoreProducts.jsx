@@ -26,7 +26,7 @@ import thirdInstructor from '../../assets/user-profile3.png';
 
 // importing css
 import './home.css';
-import { FaCalendarAlt, FaClock } from 'react-icons/fa';
+import { FaCalendarAlt, FaClock, FaShoppingCart } from 'react-icons/fa';
 import { StarIcon } from '@chakra-ui/icons';
 import { Link } from 'react-router-dom';
 
@@ -61,7 +61,7 @@ function CustomDot({ onClick, index, currentSlide }) {
   );
 }
 
-const NewestCourse = () => {
+const StoreProducts = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const courses = [
@@ -109,28 +109,6 @@ const NewestCourse = () => {
       price: '₹ 8000',
       catagory: 'Communication',
     },
-    {
-      title: 'Fourth Course',
-      instructor: 'Another Instructor',
-      instructorProfile: secondInstructor,
-      rating: '4.5',
-      hours: '2:00 Hours',
-      date: '10 Apr 2022',
-      image: secondCourse,
-      price: '₹ 8000',
-      catagory: 'Communication',
-    },
-    {
-      title: 'Fourth Course',
-      instructor: 'Another Instructor',
-      instructorProfile: secondInstructor,
-      rating: '4.5',
-      hours: '2:00 Hours',
-      date: '10 Apr 2022',
-      image: secondCourse,
-      price: '₹ 8000',
-      catagory: 'Communication',
-    },
   ];
 
   //   Conditional Dot rendering
@@ -141,7 +119,7 @@ const NewestCourse = () => {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: 4,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 6000,
@@ -166,10 +144,10 @@ const NewestCourse = () => {
   return (
     <Box p={4}>
       <Heading as="h2" fontSize={'24px'} fontWeight={'bold'} color={'#1f3b64'}>
-        Newest Courses
+        Store Products
       </Heading>
       <Text mt={'5px'} fontSize={'14px'} color={'#818894'}>
-        #Recently published courses
+        Explore physical & vitual products
       </Text>
 
       <Slider {...settings}>
@@ -184,7 +162,7 @@ const NewestCourse = () => {
           >
             {/* Card Section */}
             <Image
-              h={'300px'}
+              h={'200px'}
               w={'full'}
               objectFit={'cover'}
               src={course.image}
@@ -208,6 +186,12 @@ const NewestCourse = () => {
                   <Text fontSize={14} fontWeight={500} color={'#818894'}>
                     {course.instructor}
                   </Text>
+
+                  <Box className='hover-card-action'>
+                    <Button className='btn-add-product-to-cart'>
+                        <FaShoppingCart size={'md'} />
+                    </Button>
+                  </Box>
                 </Box>
                 <Heading
                   color={'#171347'}
@@ -244,25 +228,6 @@ const NewestCourse = () => {
                   </Text>
                 </HStack>
 
-                <Box w={'full'}>
-                  <HStack justifyContent={'space-between'}>
-                    <Flex align="center">
-                      <Icon as={FaClock} mr="2" />
-                      <Text fontSize="sm" textAlign="left">
-                        {course.hours}
-                      </Text>
-                    </Flex>
-
-                    <Box className="verticle-line"></Box>
-
-                    <Flex align="center">
-                      <Icon as={FaCalendarAlt} mr="2" />
-                      <Text fontSize="sm" textAlign="left">
-                        {course.date}
-                      </Text>
-                    </Flex>
-                  </HStack>
-                </Box>
                 <Box
                   mt={2}
                   fontSize={'20px'}
@@ -280,4 +245,4 @@ const NewestCourse = () => {
   );
 };
 
-export default NewestCourse;
+export default StoreProducts;
