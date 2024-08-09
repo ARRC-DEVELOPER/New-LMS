@@ -1,9 +1,5 @@
 import React from 'react';
-
-// importing css
 import './home.css';
-
-// importing images
 import teacher from '../../assets/teacher.svg';
 import student from '../../assets/student.svg';
 import video from '../../assets/video.svg';
@@ -11,7 +7,6 @@ import course from '../../assets/course.svg';
 import newSec from '../../assets/become_instructor_banner.png';
 import certificateBanner from '../../assets/validate_certificates_banner.png';
 import meetingBanner from '../../assets/reserve_a_meeting.png';
-
 import {
   Container,
   Heading,
@@ -103,18 +98,18 @@ const Home = () => {
   return (
     <section className="home">
       <div className="container">
-        <section className="intro-section">
+        <section id="intro-section" className="intro-section">
           <Container maxWidth={'1200px'}>
             <Box py={10}>
               <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={6}>
                 {cardData.map(item => (
                   <Card
-                    key={item._id}
+                    key={item.id}
                     title={item.title}
                     count={item.count}
                     description={item.description}
                     imageSrc={item.icon}
-                    id={item._id}
+                    id={item.id}
                     bgColor={item.bgColor}
                   />
                 ))}
@@ -123,101 +118,101 @@ const Home = () => {
           </Container>
         </section>
 
-        <section className="featured-section">
+        <section id="featured-section" className="featured-section">
           <Container maxWidth={'1200px'}>
             <FeaturedCourse />
           </Container>
         </section>
 
-        <section className="newest-section">
+        <section id="newest-section" className="newest-section">
           <Container maxWidth={'1200px'}>
             <NewestCourse />
           </Container>
         </section>
 
-        <section className="bundles-section">
+        <section id="bundles-section" className="bundles-section">
           <Container maxWidth={'1200px'}>
             <LatestBundles />
           </Container>
         </section>
 
-        <section className="bundles-section">
+        <section id="upcoming-courses" className="bundles-section">
           <Container maxWidth={'1200px'}>
             <UpcomingCourses />
           </Container>
         </section>
 
-        <section className="bundles-section">
+        <section id="best-rated-courses" className="bundles-section">
           <Container maxWidth={'1200px'}>
             <BestRatedCourses />
           </Container>
         </section>
 
-        <section className="newest-section">
+        <section id="trending-categories" className="newest-section">
           <Container maxWidth={'1200px'}>
             <TrendingCategories />
           </Container>
         </section>
 
-        <section className="bundles-section">
+        <section id="best-selling-courses" className="bundles-section">
           <Container maxWidth={'1200px'}>
             <BestSellingCourses />
           </Container>
         </section>
 
-        <section className="bundles-section">
+        <section id="free-courses" className="bundles-section">
           <Container maxWidth={'1200px'}>
             <FreeCourses />
           </Container>
         </section>
 
-        <section className="newest-section">
+        <section id="become-instructor" className="newest-section">
           <Container maxWidth={'1200px'}>
             <Image src={newSec} />
           </Container>
         </section>
 
-        <section className="bundles-section">
+        <section id="discounted-courses" className="bundles-section">
           <Container maxWidth={'1200px'}>
             <DiscountedCourses />
           </Container>
         </section>
 
-        <section className="bundles-section">
+        <section id="store-products" className="bundles-section">
           <Container maxWidth={'1200px'}>
             <StoreProducts />
           </Container>
         </section>
 
-        <section className="newest-section">
+        <section id="become-an-instructor" className="newest-section">
           <Container maxWidth={'1200px'}>
             <BecomeAnInstructor />
           </Container>
         </section>
 
-        <section className="newest-section">
+        <section id="question-forum" className="newest-section">
           <Container maxWidth={'1200px'}>
             <QuestionForum />
           </Container>
         </section>
 
-        <section className="newest-section">
+        <section id="find-best-instructor" className="newest-section">
           <Container maxWidth={'1200px'}>
             <FindBestInstructor />
           </Container>
         </section>
 
-        <section>
+        <section id="home-video">
           <HomeVideo />
         </section>
 
-        <section className="newest-section">
+        <section id="reward-section" className="newest-section">
           <Container maxWidth={'1200px'} mb={20}>
             <RewardSection />
           </Container>
         </section>
 
-        <section>
+        <section id="certificate-banner">
           <Container maxWidth={'1200px'} mb={20}>
             <Box display={'flex'} justifyContent={'center'} gap={10}>
               <Image src={certificateBanner} />
@@ -226,11 +221,11 @@ const Home = () => {
           </Container>
         </section>
 
-        <section>
+        <section id="testimonials">
           <Testimonials />
         </section>
 
-        <section className="newest-section">
+        <section id="organization" className="newest-section">
           <Organization />
         </section>
       </div>

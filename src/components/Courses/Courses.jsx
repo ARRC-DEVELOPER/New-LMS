@@ -1,0 +1,556 @@
+import React, { useState } from 'react';
+import {
+  Box,
+  Button,
+  Checkbox,
+  Container,
+  Flex,
+  FormControl,
+  FormLabel,
+  Heading,
+  HStack,
+  Icon,
+  Image,
+  Input,
+  Select,
+  Switch,
+  Text,
+  VStack,
+} from '@chakra-ui/react';
+
+import '../CategoryPages/Development/development.css';
+
+import { FaCalendarAlt, FaClock, FaList, FaThLarge } from 'react-icons/fa';
+
+// importing images
+import backCover from '../../assets/webdev-category_cover.png';
+
+// Import images or use URLs
+import firstCourse from '../../assets/Installment.jpg';
+import firstInstructor from '../../assets/instructor_profile.png';
+
+import secondCourse from '../../assets/new_live_system.jpg';
+import secondInstructor from '../../assets/user-profile2.png';
+
+import thirdCourse from '../../assets/course1.jpg';
+import thirdInstructor from '../../assets/user-profile3.png';
+
+import { Link } from 'react-router-dom';
+import { StarIcon } from '@chakra-ui/icons';
+
+const Courses = () => {
+  const [view, setView] = useState('grid');
+  const [upcoming, setUpcoming] = useState(false);
+  const [free, setFree] = useState(false);
+  const [discount, setDiscount] = useState(false);
+  const [download, setDownload] = useState(false);
+  const [sort, setSort] = useState('');
+
+  const handleViewChange = e => {
+    setView(e.target.value);
+  };
+
+  const handleUpcomingChange = e => {
+    setUpcoming(e.target.checked);
+  };
+
+  const handleFreeChange = e => {
+    setFree(e.target.checked);
+  };
+
+  const handleDiscountChange = e => {
+    setDiscount(e.target.checked);
+  };
+
+  const handleDownloadChange = e => {
+    setDownload(e.target.checked);
+  };
+
+  const handleSortChange = e => {
+    setSort(e.target.value);
+  };
+
+  // Right Side Filter
+  const [selectedFilters, setSelectedFilters] = useState([]);
+
+  const handleFilterChange = filter => {
+    if (selectedFilters.includes(filter)) {
+      setSelectedFilters(selectedFilters.filter(f => f !== filter));
+    } else {
+      setSelectedFilters([...selectedFilters, filter]);
+    }
+  };
+
+  const filterOptions = [
+    {
+      title: 'Type',
+      options: [
+        { label: 'Live Class', value: 'live_class' },
+        { label: 'Course', value: 'course' },
+        { label: 'Text Course', value: 'text_course' },
+      ],
+    },
+    {
+      title: 'More options',
+      options: [
+        { label: 'Show only bundles', value: 'bundles' },
+        { label: 'Show only subscribe', value: 'subscribe' },
+        {
+          label: 'Show only certificate included',
+          value: 'certificate_included',
+        },
+        { label: 'Show only courses with quiz', value: 'with_quiz' },
+        { label: 'Show only featured courses', value: 'featured' },
+      ],
+    },
+  ];
+
+  const courses = [
+    {
+      title: 'New Learning Page',
+      instructor: 'Jessica Wray',
+      instructorProfile: firstInstructor,
+      rating: '5.0',
+      hours: '3:30 Hours',
+      date: '1 Mar 2022',
+      image: firstCourse,
+      price: 'Free',
+      catagory: 'Web Developement',
+    },
+    {
+      title: 'Advanced Strategies',
+      instructor: 'Robert Ransdell',
+      instructorProfile: secondInstructor,
+      rating: '4.8',
+      hours: '2:45 Hours',
+      date: '15 Feb 2022',
+      image: secondCourse,
+      price: 'Subscribe',
+      catagory: 'Web Developement',
+    },
+    {
+      title: 'Installment and Secure Host',
+      instructor: 'Jessica Wray',
+      instructorProfile: thirdInstructor,
+      rating: '5.0',
+      hours: '1:30 Hours',
+      date: '15 Mar 2023',
+      image: thirdCourse,
+      price: '₹ 8000',
+      catagory: 'Web Developement',
+    },
+    {
+      title: 'Installment and Secure Host',
+      instructor: 'Jessica Wray',
+      instructorProfile: thirdInstructor,
+      rating: '5.0',
+      hours: '1:30 Hours',
+      date: '15 Mar 2023',
+      image: thirdCourse,
+      price: '₹ 8000',
+      catagory: 'Web Developement',
+    },
+    {
+      title: 'Installment and Secure Host',
+      instructor: 'Jessica Wray',
+      instructorProfile: thirdInstructor,
+      rating: '5.0',
+      hours: '1:30 Hours',
+      date: '15 Mar 2023',
+      image: thirdCourse,
+      price: '₹ 8000',
+      catagory: 'Web Developement',
+    },
+  ];
+
+  return (
+    <section className="webdev">
+      <div className="container">
+        <section className="site-top-banner">
+          <Image src={backCover} className="img-cover" />
+          <Container maxWidth={'1200px'} h={'530px'} zIndex={100}>
+            <Box
+              display={'flex'}
+              flexDirection={'column'}
+              justifyContent={'center'}
+              alignItems={'center'}
+              alignContent={'center'}
+              h={'100%'}
+            >
+              <Heading
+                as={'h1'}
+                fontSize={'1.875rem'}
+                color={'white'}
+                zIndex={10}
+              >
+                Courses
+              </Heading>
+              <Text
+                className="badge-count"
+                color={'white'}
+                mt={3}
+                rounded={'md'}
+                zIndex={10}
+              >
+                5 Courses
+              </Text>
+              <HStack spacing={4} marginTop={20} position="relative" w="600px">
+                <Input
+                  w="full"
+                  padding={8}
+                  bgColor="white"
+                  borderRadius="full"
+                  placeholder="Search courses, instructors and organizations..."
+                  pr="120px"
+                />
+                <Button
+                  colorScheme="green"
+                  borderRadius="full"
+                  px={8}
+                  py={6}
+                  position="absolute"
+                  right="3"
+                  zIndex={2}
+                >
+                  Search
+                </Button>
+              </HStack>
+            </Box>
+          </Container>
+        </section>
+
+        <section className="filterbar">
+          <Container maxWidth={'1200px'} mt={10}>
+            <Flex
+              className="topFilters"
+              rounded="md"
+              alignItems="center"
+              justifyContent="space-between"
+            >
+              <HStack spacing={8} marginLeft={2}>
+                {/* <Input
+                  type="radio"
+                  name="view"
+                  value="grid"
+                  checked={view === 'grid'}
+                  onChange={handleViewChange}
+                /> */}
+                <Icon as={FaThLarge} fontSize="lg" />
+
+                {/* <Input
+                  type="radio"
+                  name="view"
+                  value="list"
+                  checked={view === 'list'}
+                  onChange={handleViewChange}
+                /> */}
+                <Icon as={FaList} fontSize="lg" />
+              </HStack>
+
+              <HStack spacing={8}>
+                <Box
+                  display={'flex'}
+                  flexDir={'row'}
+                  alignContent={'center'}
+                  alignItems={'center'}
+                  gap={2}
+                >
+                  <Text
+                    fontSize={'0.875rem'}
+                    fontWeight={400}
+                    lineheight={1.3}
+                    htmlFor="upcoming"
+                  >
+                    Upcoming
+                  </Text>
+                  <Switch
+                    isChecked={upcoming}
+                    onChange={handleUpcomingChange}
+                    id="upcoming"
+                  />
+                </Box>
+
+                <Box
+                  display={'flex'}
+                  flexDir={'row'}
+                  alignContent={'center'}
+                  alignItems={'center'}
+                  gap={2}
+                >
+                  <Text
+                    htmlFor="free"
+                    fontSize={'0.875rem'}
+                    fontWeight={400}
+                    lineheight={1.3}
+                  >
+                    Free
+                  </Text>
+                  <Switch
+                    isChecked={free}
+                    onChange={handleFreeChange}
+                    id="free"
+                  />
+                </Box>
+
+                <Box
+                  display={'flex'}
+                  flexDir={'row'}
+                  alignContent={'center'}
+                  alignItems={'center'}
+                  gap={2}
+                >
+                  <Text
+                    fontSize={'0.875rem'}
+                    fontWeight={400}
+                    lineheight={1.3}
+                    htmlFor="discount"
+                  >
+                    Discount
+                  </Text>
+                  <Switch
+                    isChecked={discount}
+                    onChange={handleDiscountChange}
+                    id="discount"
+                  />
+                </Box>
+
+                <Box
+                  display={'flex'}
+                  flexDir={'row'}
+                  alignContent={'center'}
+                  alignItems={'center'}
+                  gap={2}
+                >
+                  <Text
+                    htmlFor="download"
+                    fontSize={'0.875rem'}
+                    fontWeight={400}
+                    lineheight={1.3}
+                  >
+                    Download
+                  </Text>
+                  <Switch
+                    isChecked={download}
+                    onChange={handleDownloadChange}
+                    id="download"
+                  />
+                </Box>
+
+                <Box width={'15rem'} marginLeft={'2rem'}>
+                  <Select
+                    placeholder="Sort by"
+                    value={sort}
+                    onChange={handleSortChange}
+                    fontSize={'0.875rem'}
+                    lineHeight={1.4}
+                    colorScheme="green"
+                  >
+                    <option value="">All</option>
+                    <option value="newest">Newest</option>
+                    <option value="expensive">Highest Price</option>
+                    <option value="inexpensive">Lowest Price</option>
+                    <option value="bestsellers">Bestsellers</option>
+                    <option value="best_rates">Best Rated</option>
+                  </Select>
+                </Box>
+              </HStack>
+            </Flex>
+          </Container>
+        </section>
+
+        <section className={'categorybody'}>
+          <Container maxWidth={'1200px'} mt={10}>
+            <Box display={'flex'} gap={2}>
+              {/* Courses Section */}
+              <Box
+                width={'70%'}
+                display={'flex'}
+                flexDir={'row'}
+                flexWrap={'wrap'}
+                gap={8}
+              >
+                {courses.map((course, index) => (
+                  <Box
+                    // h="600px"
+                    width={'46%'}
+                    key={index}
+                    borderRadius="15px"
+                    overflow="hidden"
+                    className="new-course-card"
+                  >
+                    {/* Card Section */}
+                    <Image
+                      h={'300px'}
+                      w={'full'}
+                      objectFit={'cover'}
+                      src={course.image}
+                    />
+                    <Box
+                      w={'full'}
+                      h={'full'}
+                      overflow="hidden"
+                      align="flex-start"
+                      p={4}
+                      zIndex={2}
+                    >
+                      <VStack spacing="4" align={'flex-start'}>
+                        <Box
+                          display={'flex'}
+                          justifyContent={'center'}
+                          alignItems={'center'}
+                          gap={'1'}
+                        >
+                          <Image
+                            className="avatar"
+                            src={course.instructorProfile}
+                          />
+                          <Text
+                            fontSize={14}
+                            fontWeight={500}
+                            color={'#818894'}
+                          >
+                            {course.instructor}
+                          </Text>
+                        </Box>
+                        <Heading
+                          color={'#171347'}
+                          fontWeight={'bold'}
+                          fontSize={16}
+                          as="h3"
+                        >
+                          {course.title}
+                        </Heading>
+
+                        <Text fontSize={14} mt={6} textAlign="left">
+                          in{' '}
+                          <Link
+                            style={{
+                              textDecoration: 'underline',
+                              cursor: 'pointer',
+                            }}
+                          >
+                            {course.catagory}
+                          </Link>
+                        </Text>
+
+                        <HStack
+                          spacing={'-3'}
+                          display={'flex'}
+                          alignItems="flex-start"
+                        >
+                          <Icon
+                            as={StarIcon}
+                            color="yellow.500"
+                            boxSize={4}
+                            mr={2}
+                          />
+                          <Icon
+                            as={StarIcon}
+                            color="yellow.500"
+                            boxSize={4}
+                            mr={2}
+                          />
+                          <Icon
+                            as={StarIcon}
+                            color="yellow.500"
+                            boxSize={4}
+                            mr={2}
+                          />
+                          <Icon
+                            as={StarIcon}
+                            color="yellow.500"
+                            boxSize={4}
+                            mr={2}
+                          />
+                          <Text
+                            ml={2}
+                            bgColor={'#43d477'}
+                            px={'0.5rem'}
+                            borderRadius={'0.3125rem'}
+                            fontSize={'0.75rem'}
+                            color={'white'}
+                          >
+                            {course.rating}
+                          </Text>
+                        </HStack>
+
+                        <Box w={'full'}>
+                          <HStack justifyContent={'space-between'}>
+                            <Flex align="center">
+                              <Icon as={FaClock} mr="2" />
+                              <Text fontSize="sm" textAlign="left">
+                                {course.hours}
+                              </Text>
+                            </Flex>
+
+                            <Box className="verticle-line"></Box>
+
+                            <Flex align="center">
+                              <Icon as={FaCalendarAlt} mr="2" />
+                              <Text fontSize="sm" textAlign="left">
+                                {course.date}
+                              </Text>
+                            </Flex>
+                          </HStack>
+                        </Box>
+                        <Box
+                          mt={2}
+                          fontSize={'20px'}
+                          color={'#43d477'}
+                          fontWeight={800}
+                        >
+                          {course.price}
+                        </Box>
+                      </VStack>
+                    </Box>
+                  </Box>
+                ))}
+              </Box>
+
+              <Box width={'30%'}>
+                <Box
+                  p={4}
+                  rounded="md"
+                  shadow="md"
+                  border="1px"
+                  borderColor="gray.300"
+                  w="full"
+                  maxW="md"
+                >
+                  <VStack spacing={4}>
+                    {filterOptions.map(filterGroup => (
+                      <FormControl key={filterGroup.title}>
+                        <FormLabel>{filterGroup.title}</FormLabel>
+                        {filterGroup.options.map(option => (
+                          <HStack key={option.value}>
+                            <Checkbox
+                              onChange={() => handleFilterChange(option.value)}
+                              isChecked={selectedFilters.includes(option.value)}
+                              value={option.value}
+                            >
+                              <Text>{option.label}</Text>
+                            </Checkbox>
+                          </HStack>
+                        ))}
+                      </FormControl>
+                    ))}
+                    <Button
+                      variant="solid"
+                      colorScheme="green"
+                      onClick={() => console.log(selectedFilters)}
+                      width={'full'}
+                    >
+                      Filter Items
+                    </Button>
+                  </VStack>
+                </Box>
+              </Box>
+            </Box>
+          </Container>
+        </section>
+      </div>
+    </section>
+  );
+};
+
+export default Courses;

@@ -105,10 +105,12 @@ const FeaturedCourse = () => {
 
   return (
     <Box p={4}>
-      <Heading as="h2" size="lg" mb={4}>
+      <Heading as="h2" fontSize={'24px'} fontWeight={'bold'} color={'#1f3b64'}>
         Featured Courses
       </Heading>
-      <Text mb={4}>#Browse featured courses and become skillful</Text>
+      <Text mt={'5px'} fontSize={'14px'} color={'#818894'}>
+        #Browse featured courses and become skillful
+      </Text>
 
       <Slider {...settings}>
         {slides.map((slide, index) => (
@@ -155,7 +157,11 @@ const FeaturedCourse = () => {
                     continue to do so for the rest of your career.
                   </Text>
 
-                  <HStack spacing={'-3'} display={'flex'} alignItems="flex-start">
+                  <HStack
+                    spacing={'-3'}
+                    display={'flex'}
+                    alignItems="flex-start"
+                  >
                     <Icon as={StarIcon} color="yellow.500" boxSize={4} mr={2} />
                     <Icon as={StarIcon} color="yellow.500" boxSize={4} mr={2} />
                     <Icon as={StarIcon} color="yellow.500" boxSize={4} mr={2} />
@@ -169,11 +175,15 @@ const FeaturedCourse = () => {
                     <HStack spacing="4">
                       <Flex align="center">
                         <Icon as={FaClock} mr="2" />
-                        <Text fontSize="sm" textAlign="left">3:30 Hours</Text>
+                        <Text fontSize="sm" textAlign="left">
+                          3:30 Hours
+                        </Text>
                       </Flex>
                       <Flex align="center">
                         <Icon as={FaCalendarAlt} mr="2" />
-                        <Text fontSize="sm" textAlign="left">1 Mar 2022</Text>
+                        <Text fontSize="sm" textAlign="left">
+                          1 Mar 2022
+                        </Text>
                       </Flex>
                     </HStack>
                     <Button colorScheme="teal" size="lg" variant="outline">

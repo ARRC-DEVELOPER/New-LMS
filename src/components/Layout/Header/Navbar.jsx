@@ -42,10 +42,10 @@ const Navbar = () => {
       as="header"
       width="100%"
       bg="white"
-      zIndex="1000"
       shadow="md"
       mt={'1'}
       position={'sticky'}
+      zIndex="100"
       top={0}
       left={0}
       right={0}
@@ -64,21 +64,30 @@ const Navbar = () => {
             <Menu>
               <MenuButton as={IconButton} icon={<FaBars />} variant="outline" />
               <MenuList>
-                <MenuItem icon={<FaCode />} as="a" href="#">
-                  Development
-                </MenuItem>
-                <MenuItem icon={<FaBriefcase />} as="a" href="#">
-                  Business
-                </MenuItem>
-                <MenuItem icon={<FaChartLine />} as="a" href="#">
-                  Marketing
-                </MenuItem>
+                <Link to="/webdevlopment">
+                  <MenuItem icon={<FaCode />}>Development</MenuItem>
+                </Link>
+
+                <Link to="/management">
+                  <MenuItem icon={<FaBriefcase />} as="a" href="#">
+                    Business
+                  </MenuItem>
+                </Link>
+
+                <Link to="/marketing">
+                  <MenuItem icon={<FaChartLine />} as="a" href="#">
+                    Marketing
+                  </MenuItem>
+                </Link>
+
                 <MenuItem icon={<FaHeartbeat />} as="a" href="#">
                   Lifestyle
                 </MenuItem>
+
                 <MenuItem icon={<FaGraduationCap />} as="a" href="#">
                   Academics
                 </MenuItem>
+
                 <MenuItem icon={<FaPalette />} as="a" href="#">
                   Design
                 </MenuItem>

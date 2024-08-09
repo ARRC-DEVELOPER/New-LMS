@@ -86,7 +86,7 @@ const Footer = () => {
                 About Us
               </Text>
               <Text mt={2}>
-                Rocket LMS is a fully-featured learning management system that
+                ARRC Technology LMS is a fully-featured learning management system that
                 helps you to run your education business in several hours. This
                 platform helps instructors to create professional education
                 materials and helps students to learn from the best instructors.
@@ -158,7 +158,7 @@ const Footer = () => {
               alignItems={'center'}
             >
               <Text fontSize="lg" fontWeight="bold">
-                Purchase New LMS
+                Purchase ARRC Technology LMS
               </Text>
               <Link href="https://codecanyon.net/" title="Notnt" isExternal>
                 <Image src={ArrcImg} filter="brightness(0) invert(1)" alt="Envato" mt={2} />

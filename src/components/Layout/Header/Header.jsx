@@ -13,13 +13,53 @@ import {
   InputRightElement,
   IconButton,
   Divider,
+  VStack,
+  Text,
 } from '@chakra-ui/react';
 import { ChevronDownIcon, SearchIcon } from '@chakra-ui/icons';
 import { FaBell, FaShoppingCart } from 'react-icons/fa';
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
 
+const sectionData = {
+  'Skillful Instructors': 'intro-section',
+  'Happy Students': 'intro-section',
+  'Live Classes': 'intro-section',
+  'Video Courses': 'intro-section',
+  'Featured Course': 'featured-section',
+  'Newest Course': 'newest-section',
+  'Latest Bundles': 'bundles-section',
+  'Upcoming Courses': 'upcoming-courses',
+  'Best Rated Courses': 'best-rated-courses',
+  'Trending Categories': 'trending-categories',
+  'Best Selling Courses': 'best-selling-courses',
+  'Free Courses': 'free-courses',
+  'Become An Instructor': 'become-instructor',
+  'Discounted Courses': 'discounted-courses',
+  'Store Products': 'store-products',
+  'Question Forum': 'question-forum',
+  'Find Best Instructor': 'find-best-instructor',
+  'Home Video': 'home-video',
+  'Reward Section': 'reward-section',
+  'Testimonials': 'testimonials',
+  'Organization': 'organization',
+};
+
 const Header = () => {
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const handleSearch = () => {
+    const lowerCaseQuery = searchQuery.toLowerCase();
+
+    const sectionId = Object.keys(sectionData).find(title =>
+      title.toLowerCase().includes(lowerCaseQuery)
+    );
+
+    if (sectionId) {
+      document.getElementById(sectionData[sectionId])?.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <Fragment>
       <Box>
@@ -52,6 +92,7 @@ const Header = () => {
                         p="2"
                         minW="240px"
                         boxShadow="xl"
+                        zIndex="200"
                       >
                         <MenuItem>INR (₹)</MenuItem>
                         <MenuItem>USD ($)</MenuItem>
@@ -78,6 +119,7 @@ const Header = () => {
                         p="2"
                         minW="240px"
                         boxShadow="xl"
+                        zIndex="200"
                       >
                         <MenuItem>English</MenuItem>
                         <MenuItem>Spanish</MenuItem>
@@ -94,6 +136,8 @@ const Header = () => {
                       focusBorderColor="green.400"
                       borderColor="gray.200"
                       borderWidth="0.5px"
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
                     />
                     <InputRightElement>
                       <IconButton
@@ -101,9 +145,7 @@ const Header = () => {
                         icon={<SearchIcon />}
                         size="sm"
                         variant="ghost"
-                        onClick={() => {
-                          /* logic to handle search */
-                        }}
+                        onClick={handleSearch}
                       />
                     </InputRightElement>
                   </InputGroup>

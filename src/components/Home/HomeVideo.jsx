@@ -45,7 +45,7 @@ const d = () => {
             Start learning anywhere, anytime...
           </Text>
           <Text fontSize={'16px'} mt={'10px'} fontWeight={400}>
-            Use Rocket LMS to access high-quality education materials without
+            Use ARRC Technology LMS to access high-quality education materials without
             any limitations in the easiest way.
           </Text>
         </Box>

@@ -60,7 +60,7 @@ const RewardSection = () => {
           mt={'10px'}
           maxW={'90%'}
         >
-          Use Rocket LMS and win club points according to different activities.
+          Use ARRC Technology LMS and win club points according to different activities.
           You will be able to use your club points to get free prizes and
           courses. Start using the system now and collect points!
         </Text>
