@@ -26,7 +26,7 @@ import thirdInstructor from '../../assets/user-profile3.png';
 
 // importing css
 import './home.css';
-import { FaCalendarAlt, FaClock, FaShoppingCart } from 'react-icons/fa';
+import {FaShoppingCart } from 'react-icons/fa';
 import { StarIcon } from '@chakra-ui/icons';
 import { Link } from 'react-router-dom';
 

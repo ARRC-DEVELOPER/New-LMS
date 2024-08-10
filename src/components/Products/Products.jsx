@@ -18,41 +18,38 @@ import {
   VStack,
 } from '@chakra-ui/react';
 
-import './development.css';
+import '../CategoryPages/Development/development.css';
 
-import { FaCalendarAlt, FaClock, FaList, FaThLarge } from 'react-icons/fa';
-import { BsArrowDown } from 'react-icons/bs';
+import { FaShoppingCart } from 'react-icons/fa';
+
+// importing css
+import '../CategoryPages/Development/development.css';
 
 // importing images
-import backCover from '../../../assets/webdev-category_cover.png';
+import backCover from '../../assets/webdev-category_cover.png';
 
 // Import images or use URLs
-import firstCourse from '../../../assets/Installment.jpg';
-import firstInstructor from '../../../assets/instructor_profile.png';
+import firstCourse from '../../assets/Installment.jpg';
+import firstInstructor from '../../assets/instructor_profile.png';
 
-import secondCourse from '../../../assets/new_live_system.jpg';
-import secondInstructor from '../../../assets/user-profile2.png';
+import secondCourse from '../../assets/new_live_system.jpg';
+import secondInstructor from '../../assets/user-profile2.png';
 
-import thirdCourse from '../../../assets/course1.jpg';
-import thirdInstructor from '../../../assets/user-profile3.png';
+import thirdCourse from '../../assets/course1.jpg';
+import thirdInstructor from '../../assets/user-profile3.png';
 
 import { Link } from 'react-router-dom';
 import { StarIcon } from '@chakra-ui/icons';
 
-const WebDevelopment = () => {
+const Products = () => {
   const [view, setView] = useState('grid');
-  const [upcoming, setUpcoming] = useState(false);
   const [free, setFree] = useState(false);
+  const [freeShipping, setFreeShipping] = useState(false);
   const [discount, setDiscount] = useState(false);
-  const [download, setDownload] = useState(false);
   const [sort, setSort] = useState('');
 
   const handleViewChange = e => {
     setView(e.target.value);
-  };
-
-  const handleUpcomingChange = e => {
-    setUpcoming(e.target.checked);
   };
 
   const handleFreeChange = e => {
@@ -63,8 +60,8 @@ const WebDevelopment = () => {
     setDiscount(e.target.checked);
   };
 
-  const handleDownloadChange = e => {
-    setDownload(e.target.checked);
+  const handleFreeShippingChange = e => {
+    setFreeShipping(e.target.checked);
   };
 
   const handleSortChange = e => {
@@ -82,53 +79,20 @@ const WebDevelopment = () => {
     }
   };
 
-  const filterOptions = [
+  const typeFilter = [
     {
       title: 'Type',
       options: [
-        { label: 'Live Class', value: 'live_class' },
-        { label: 'Course', value: 'course' },
-        { label: 'Text Course', value: 'text_course' },
+        { label: 'Virtual', value: 'virtual' },
+        { label: 'Physical', value: 'physical' },
       ],
     },
+
     {
-      title: 'Level',
+      title: 'Options',
       options: [
-        { label: 'Beginner', value: 'beginner' },
-        { label: 'Intermediate', value: 'intermediate' },
-        { label: 'Expert', value: 'expert' },
-      ],
-    },
-    {
-      title: 'Language',
-      options: [
-        { label: 'English', value: 'english' },
-        { label: 'Español', value: 'espanol' },
-        { label: 'Portugues', value: 'portugues' },
-        { label: 'हिन्', value: 'hindi' },
-        { label: 'العربية', value: 'arabic' },
-      ],
-    },
-    {
-      title: 'Topic',
-      options: [
-        { label: 'Android Development', value: 'android' },
-        { label: 'iOS Development', value: 'ios' },
-        { label: 'Google Flutter', value: 'flutter' },
-        { label: 'React Native Kotlin', value: 'react_native' },
-      ],
-    },
-    {
-      title: 'More options',
-      options: [
-        { label: 'Show only bundles', value: 'bundles' },
-        { label: 'Show only subscribe', value: 'subscribe' },
-        {
-          label: 'Show only certificate included',
-          value: 'certificate_included',
-        },
-        { label: 'Show only courses with quiz', value: 'with_quiz' },
-        { label: 'Show only featured courses', value: 'featured' },
+        { label: 'Only available products', value: 'available' },
+        { label: 'Products with points', value: 'points' },
       ],
     },
   ];
@@ -143,7 +107,7 @@ const WebDevelopment = () => {
       date: '1 Mar 2022',
       image: firstCourse,
       price: 'Free',
-      catagory: 'Web Developement',
+      catagory: 'Business Strategy',
     },
     {
       title: 'Advanced Strategies',
@@ -154,7 +118,7 @@ const WebDevelopment = () => {
       date: '15 Feb 2022',
       image: secondCourse,
       price: 'Subscribe',
-      catagory: 'Web Developement',
+      catagory: 'Communication',
     },
     {
       title: 'Installment and Secure Host',
@@ -165,7 +129,18 @@ const WebDevelopment = () => {
       date: '15 Mar 2023',
       image: thirdCourse,
       price: '₹ 8000',
-      catagory: 'Web Developement',
+      catagory: 'Management',
+    },
+    {
+      title: 'Fourth Course',
+      instructor: 'Another Instructor',
+      instructorProfile: secondInstructor,
+      rating: '4.5',
+      hours: '2:00 Hours',
+      date: '10 Apr 2022',
+      image: secondCourse,
+      price: '₹ 8000',
+      catagory: 'Communication',
     },
   ];
 
@@ -189,7 +164,7 @@ const WebDevelopment = () => {
                 color={'white'}
                 zIndex={10}
               >
-                Web Development
+                Products
               </Heading>
               <Text
                 className="badge-count"
@@ -198,7 +173,7 @@ const WebDevelopment = () => {
                 rounded={'md'}
                 zIndex={10}
               >
-                3 Courses
+                5 Products
               </Text>
               <HStack spacing={4} marginTop={20} position="relative" w="600px">
                 <Input
@@ -233,49 +208,7 @@ const WebDevelopment = () => {
               alignItems="center"
               justifyContent="space-between"
             >
-              <HStack spacing={8} marginLeft={2}>
-                {/* <Input
-                  type="radio"
-                  name="view"
-                  value="grid"
-                  checked={view === 'grid'}
-                  onChange={handleViewChange}
-                /> */}
-                <Icon as={FaThLarge} fontSize="lg" />
-
-                {/* <Input
-                  type="radio"
-                  name="view"
-                  value="list"
-                  checked={view === 'list'}
-                  onChange={handleViewChange}
-                /> */}
-                <Icon as={FaList} fontSize="lg" />
-              </HStack>
-
               <HStack spacing={8}>
-                <Box
-                  display={'flex'}
-                  flexDir={'row'}
-                  alignContent={'center'}
-                  alignItems={'center'}
-                  gap={2}
-                >
-                  <Text
-                    fontSize={'0.875rem'}
-                    fontWeight={400}
-                    lineheight={1.3}
-                    htmlFor="upcoming"
-                  >
-                    Upcoming
-                  </Text>
-                  <Switch
-                    isChecked={upcoming}
-                    onChange={handleUpcomingChange}
-                    id="upcoming"
-                  />
-                </Box>
-
                 <Box
                   display={'flex'}
                   flexDir={'row'}
@@ -306,6 +239,28 @@ const WebDevelopment = () => {
                   gap={2}
                 >
                   <Text
+                    htmlFor="download"
+                    fontSize={'0.875rem'}
+                    fontWeight={400}
+                    lineheight={1.3}
+                  >
+                    Free Shipping
+                  </Text>
+                  <Switch
+                    isChecked={freeShipping}
+                    onChange={handleFreeShippingChange}
+                    id="freeShipping"
+                  />
+                </Box>
+
+                <Box
+                  display={'flex'}
+                  flexDir={'row'}
+                  alignContent={'center'}
+                  alignItems={'center'}
+                  gap={2}
+                >
+                  <Text
                     fontSize={'0.875rem'}
                     fontWeight={400}
                     lineheight={1.3}
@@ -319,47 +274,25 @@ const WebDevelopment = () => {
                     id="discount"
                   />
                 </Box>
-
-                <Box
-                  display={'flex'}
-                  flexDir={'row'}
-                  alignContent={'center'}
-                  alignItems={'center'}
-                  gap={2}
-                >
-                  <Text
-                    htmlFor="download"
-                    fontSize={'0.875rem'}
-                    fontWeight={400}
-                    lineheight={1.3}
-                  >
-                    Download
-                  </Text>
-                  <Switch
-                    isChecked={download}
-                    onChange={handleDownloadChange}
-                    id="download"
-                  />
-                </Box>
-
-                <Box width={'15rem'} marginLeft={'2rem'}>
-                  <Select
-                    placeholder="Sort by"
-                    value={sort}
-                    onChange={handleSortChange}
-                    fontSize={'0.875rem'}
-                    lineHeight={1.4}
-                    colorScheme="green"
-                  >
-                    <option value="">All</option>
-                    <option value="newest">Newest</option>
-                    <option value="expensive">Highest Price</option>
-                    <option value="inexpensive">Lowest Price</option>
-                    <option value="bestsellers">Bestsellers</option>
-                    <option value="best_rates">Best Rated</option>
-                  </Select>
-                </Box>
               </HStack>
+
+              <Box width={'15rem'} marginLeft={'2rem'}>
+                <Select
+                  placeholder="Sort by"
+                  value={sort}
+                  onChange={handleSortChange}
+                  fontSize={'0.875rem'}
+                  lineHeight={1.4}
+                  colorScheme="green"
+                >
+                  <option value="">All</option>
+                  <option value="newest">Newest</option>
+                  <option value="expensive">Highest Price</option>
+                  <option value="inexpensive">Lowest Price</option>
+                  <option value="bestsellers">Bestsellers</option>
+                  <option value="best_rates">Best Rated</option>
+                </Select>
+              </Box>
             </Flex>
           </Container>
         </section>
@@ -369,16 +302,16 @@ const WebDevelopment = () => {
             <Box display={'flex'} gap={2}>
               {/* Courses Section */}
               <Box
-                width={'70%'}
+                width={'80%'}
                 display={'flex'}
                 flexDir={'row'}
                 flexWrap={'wrap'}
-                gap={8}
+                gap={5}
               >
                 {courses.map((course, index) => (
                   <Box
                     // h="600px"
-                    width={'46%'}
+                    w={'280px'}
                     key={index}
                     borderRadius="15px"
                     overflow="hidden"
@@ -386,7 +319,7 @@ const WebDevelopment = () => {
                   >
                     {/* Card Section */}
                     <Image
-                      h={'300px'}
+                      h={'200px'}
                       w={'full'}
                       objectFit={'cover'}
                       src={course.image}
@@ -417,6 +350,12 @@ const WebDevelopment = () => {
                           >
                             {course.instructor}
                           </Text>
+
+                          <Box className="hover-card-action">
+                            <Button className="btn-add-product-to-cart">
+                              <FaShoppingCart size={'md'} />
+                            </Button>
+                          </Box>
                         </Box>
                         <Heading
                           color={'#171347'}
@@ -480,25 +419,6 @@ const WebDevelopment = () => {
                           </Text>
                         </HStack>
 
-                        <Box w={'full'}>
-                          <HStack justifyContent={'space-between'}>
-                            <Flex align="center">
-                              <Icon as={FaClock} mr="2" />
-                              <Text fontSize="sm" textAlign="left">
-                                {course.hours}
-                              </Text>
-                            </Flex>
-
-                            <Box className="verticle-line"></Box>
-
-                            <Flex align="center">
-                              <Icon as={FaCalendarAlt} mr="2" />
-                              <Text fontSize="sm" textAlign="left">
-                                {course.date}
-                              </Text>
-                            </Flex>
-                          </HStack>
-                        </Box>
                         <Box
                           mt={2}
                           fontSize={'20px'}
@@ -513,19 +433,21 @@ const WebDevelopment = () => {
                 ))}
               </Box>
 
-              <Box width={'30%'}>
-                <Box
-                  p={4}
-                  rounded="md"
-                  shadow="md"
-                  border="1px"
-                  borderColor="gray.300"
-                  w="full"
-                  maxW="md"
-                >
-                  <VStack spacing={4}>
-                    {filterOptions.map(filterGroup => (
-                      <FormControl key={filterGroup.title}>
+              <Box width={'280px'}>
+                {typeFilter.map(filterGroup => (
+                  <Box
+                    p={4}
+                    rounded="md"
+                    shadow="md"
+                    border="1px"
+                    borderColor="gray.300"
+                    w="full"
+                    maxW="md"
+                    marginBottom={5}
+                    key={filterGroup.title}
+                  >
+                    <VStack spacing={4}>
+                      <FormControl>
                         <FormLabel
                           fontSize={'16px'}
                           color={'#171347'}
@@ -534,7 +456,6 @@ const WebDevelopment = () => {
                           {filterGroup.title}
                         </FormLabel>
                         <div className="greenbar"></div>
-
                         {filterGroup.options.map(option => (
                           <HStack key={option.value} mt={5}>
                             <Checkbox
@@ -547,14 +468,43 @@ const WebDevelopment = () => {
                           </HStack>
                         ))}
                       </FormControl>
-                    ))}
-                    <Button
-                      variant="solid"
-                      colorScheme="green"
-                      onClick={() => console.log(selectedFilters)}
-                      width={'full'}
-                    >
-                      Filter Items
+                      <Button
+                        variant="solid"
+                        colorScheme="green"
+                        onClick={() => console.log(selectedFilters)}
+                        width={'full'}
+                      >
+                        Filter Items
+                      </Button>
+                    </VStack>
+                  </Box>
+                ))}
+
+                <Box
+                  p={4}
+                  rounded="md"
+                  shadow="md"
+                  border="1px"
+                  borderColor="gray.300"
+                  w="full"
+                  maxW="md"
+                  marginBottom={5}
+                >
+                  <VStack align={'self-start'} justifyContent={'center'}>
+                    <Text fontSize={'16px'} color={'#171347'} fontWeight={700}>
+                      Catagories
+                    </Text>
+                    <div className="greenbar"></div>
+
+                    <Button textAlign={'left'} m={0} p={0} variant={''}>
+                      Design Tools
+                    </Button>
+                    <Button textAlign={'left'} mt={'-3'} p={0} variant={''}>
+                      Science Tools
+                    </Button>
+                    <Button textAlign={'left'} mt={'-3'} p={0} variant={''}>
+                      {' '}
+                      e-books
                     </Button>
                   </VStack>
                 </Box>
@@ -567,4 +517,4 @@ const WebDevelopment = () => {
   );
 };
 
-export default WebDevelopment;
+export default Products;

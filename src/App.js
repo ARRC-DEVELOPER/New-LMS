@@ -12,6 +12,8 @@ import WebDevelopment from './components/CategoryPages/Development/WebDevelopmen
 import Management from './components/CategoryPages/Business/Management';
 import Marketing from './components/CategoryPages/Marketing/Marketing';
 import Courses from './components/Courses/Courses';
+import Products from './components/Products/Products';
+import Forums from './components/Forums/Forums';
 
 const App = () => {
   return (
@@ -29,6 +31,8 @@ const App = () => {
           <Route path="/management" element={<Management />} />
           <Route path="/marketing" element={<Marketing />} />
           <Route path="/courses" element={<Courses />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/forums" element={<Forums />} />
 
         </Routes>
         <Footer />

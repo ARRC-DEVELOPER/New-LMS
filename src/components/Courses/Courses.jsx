@@ -520,9 +520,16 @@ const Courses = () => {
                   <VStack spacing={4}>
                     {filterOptions.map(filterGroup => (
                       <FormControl key={filterGroup.title}>
-                        <FormLabel>{filterGroup.title}</FormLabel>
+                        <FormLabel
+                          fontSize={'16px'}
+                          color={'#171347'}
+                          fontWeight={700}
+                        >
+                          {filterGroup.title}
+                        </FormLabel>
+                        <div className="greenbar"></div>
                         {filterGroup.options.map(option => (
-                          <HStack key={option.value}>
+                          <HStack key={option.value} mt={5}>
                             <Checkbox
                               onChange={() => handleFilterChange(option.value)}
                               isChecked={selectedFilters.includes(option.value)}

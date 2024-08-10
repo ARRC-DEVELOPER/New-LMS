@@ -24,7 +24,7 @@ const QuestionForum = () => {
           src={ForumSection}
           alt="Forum Section"
           m={'auto'}
-          className="instructor-right-box"
+          className="instructor-right-box" 
         />
         <Image
           src={Circle}

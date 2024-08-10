@@ -98,7 +98,7 @@ const Navbar = () => {
               <Link to="/">Home</Link>
               <Link to="/courses">Courses</Link>
               <Link to="/instructors">Instructors</Link>
-              <Link to="/store">Store</Link>
+              <Link to="/products">Store</Link>
               <Link to="/forums">Forums</Link>
             </HStack>
           </Stack>
