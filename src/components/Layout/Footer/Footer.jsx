@@ -181,7 +181,7 @@ const Footer = () => {
             >
               <Image src={Logo} alt="Logo" boxSize="40px" />
               <Heading size="md" fontWeight="bold">
-                New LMS
+                ARRC LMS
               </Heading>
             </Box>
 

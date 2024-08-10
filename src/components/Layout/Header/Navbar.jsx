@@ -57,7 +57,7 @@ const Navbar = () => {
             <HStack gap={-1}>
               <Image src={Logo} alt="Logo" boxSize="40px" />
               <Heading size="md" fontWeight="bold" color={'#13243d'}>
-                New LMS
+                ARRC LMS
               </Heading>
             </HStack>
 
