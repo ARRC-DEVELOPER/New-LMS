@@ -14,6 +14,7 @@ import Marketing from './components/CategoryPages/Marketing/Marketing';
 import Courses from './components/Courses/Courses';
 import Products from './components/Products/Products';
 import Forums from './components/Forums/Forums';
+import Instructors from './components/Intstructors/Instructors';
 
 const App = () => {
   return (
@@ -33,6 +34,7 @@ const App = () => {
           <Route path="/courses" element={<Courses />} />
           <Route path="/products" element={<Products />} />
           <Route path="/forums" element={<Forums />} />
+          <Route path="/instructors" element={<Instructors />} />
 
         </Routes>
         <Footer />

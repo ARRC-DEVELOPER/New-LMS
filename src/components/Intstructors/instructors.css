@@ -1,0 +1,29 @@
+.instructors-map {
+  position: relative;
+  height: 500px;
+  z-index: 1;
+}
+
+.marker-icon {
+  width: 50px !important;
+  height: 50px !important;
+  padding: 5px !important;
+  background-color: #ffffff;
+  border-radius: 50% !important;
+}
+
+.instructor-avatar {
+  width: 70px;
+  min-width: 70px;
+  max-width: 70px;
+  height: 70px;
+  border-radius: 50%;
+}
+
+.instructor-badges {
+  width: 32px;
+  min-width: 32px;
+  max-width: 32px;
+  height: 32px;
+  border-radius: 50% !important;
+}
