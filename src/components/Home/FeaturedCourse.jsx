@@ -140,7 +140,7 @@ const FeaturedCourse = () => {
                 align="flex-start"
                 p={4}
                 position="absolute"
-                left={5}
+                left={[0, 5]}
                 top={5}
                 zIndex={2}
                 bgColor={'white'}

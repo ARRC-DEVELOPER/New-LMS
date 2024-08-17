@@ -36,7 +36,7 @@ import StoreProducts from './StoreProducts';
 // Card Component
 const Card = ({ title, count, imageSrc, description, bgColor }) => {
   return (
-    <Box className="introCard" p={5} align="center" mt={'70px'}>
+    <Box className="introCard" p={5} align="center">
       <Image
         borderRadius={'25px'}
         src={imageSrc}
@@ -99,9 +99,11 @@ const Home = () => {
     <section className="home">
       <div className="container">
         <section id="intro-section" className="intro-section">
-          <Container maxWidth={'1200px'}>
-            <Box py={10}>
-              <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={6}>
+          <Container maxWidth={'1200px'} mt={"70px"}>
+            <Box py={5}>
+              <SimpleGrid
+                columns={{ base: 1, sm: 2, md: 3, lg: 4 }}
+              >
                 {cardData.map(item => (
                   <Card
                     key={item.id}
@@ -172,7 +174,7 @@ const Home = () => {
           </Container>
         </section>
 
-        <section id="discounted-courses" className="bundles-section">
+        <section id="discounted-courses">
           <Container maxWidth={'1200px'}>
             <DiscountedCourses />
           </Container>
@@ -206,7 +208,7 @@ const Home = () => {
           <HomeVideo />
         </section>
 
-        <section id="reward-section" className="newest-section">
+        <section id="reward-section">
           <Container maxWidth={'1200px'} mb={20}>
             <RewardSection />
           </Container>
@@ -214,7 +216,7 @@ const Home = () => {
 
         <section id="certificate-banner">
           <Container maxWidth={'1200px'} mb={20}>
-            <Box display={'flex'} justifyContent={'center'} gap={10}>
+            <Box display={'flex'} flexWrap={'wrap'} justifyContent={'center'} gap={10}>
               <Image src={certificateBanner} />
               <Image src={meetingBanner} />
             </Box>

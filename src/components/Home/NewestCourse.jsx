@@ -146,6 +146,30 @@ const NewestCourse = () => {
     autoplay: true,
     autoplaySpeed: 6000,
     cssEase: 'linear',
+    responsive: [
+      {
+        breakpoint: 1200, 
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 768, 
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          arrows: false, 
+        },
+      },
+    ],
     customPaging: function (i) {
       if (i < numDots) {
         return (
@@ -164,111 +188,95 @@ const NewestCourse = () => {
   };
 
   return (
-    <Box p={4}>
-      <Heading as="h2" fontSize={'24px'} fontWeight={'bold'} color={'#1f3b64'}>
+    <Box p={{ base: 2, md: 4 }}>
+      <Heading
+        as="h2"
+        fontSize={{ base: '20px', md: '24px' }}
+        fontWeight="bold"
+        color="#1f3b64"
+      >
         Newest Courses
       </Heading>
-      <Text mt={'5px'} fontSize={'14px'} color={'#818894'}>
+      <Text mt={2} fontSize={{ base: '12px', md: '14px' }} color="#818894">
         #Recently published courses
       </Text>
 
       <Slider {...settings}>
         {courses.map((course, index) => (
           <Box
-            // h="600px"
             key={index}
             borderRadius="15px"
             overflow="hidden"
             marginTop={5}
             className="new-course-card"
           >
-            {/* Card Section */}
             <Image
-              h={'300px'}
-              w={'full'}
-              objectFit={'cover'}
+              h={{ base: '200px', md: '300px' }}
+              w="full"
+              objectFit="cover"
               src={course.image}
             />
-            <Box
-              w={'full'}
-              h={'full'}
-              overflow="hidden"
-              align="flex-start"
-              p={4}
-              zIndex={2}
-            >
-              <VStack spacing="4" align={'flex-start'}>
+            <Box w="full" h="full" p={4} zIndex={2}>
+              <VStack spacing="4" align="flex-start">
                 <Box
-                  display={'flex'}
-                  justifyContent={'center'}
-                  alignItems={'center'}
-                  gap={'1'}
+                  display="flex"
+                  justifyContent="center"
+                  alignItems="center"
+                  gap="1"
                 >
                   <Image className="avatar" src={course.instructorProfile} />
-                  <Text fontSize={14} fontWeight={500} color={'#818894'}>
+                  <Text fontSize={14} fontWeight={500} color="#818894">
                     {course.instructor}
                   </Text>
                 </Box>
                 <Heading
-                  color={'#171347'}
-                  fontWeight={'bold'}
-                  fontSize={16}
+                  color="#171347"
+                  fontWeight="bold"
+                  fontSize={{ base: '14px', md: '16px' }}
                   as="h3"
                 >
                   {course.title}
                 </Heading>
-
                 <Text fontSize={14} mt={6} textAlign="left">
                   in{' '}
                   <Link
-                    style={{ textDecoration: 'underline', cursor: 'pointer' }}
+                    style={{
+                      textDecoration: 'underline',
+                      cursor: 'pointer',
+                    }}
                   >
                     {course.catagory}
                   </Link>
                 </Text>
-
-                <HStack spacing={'-3'} display={'flex'} alignItems="flex-start">
-                  <Icon as={StarIcon} color="yellow.500" boxSize={4} mr={2} />
-                  <Icon as={StarIcon} color="yellow.500" boxSize={4} mr={2} />
-                  <Icon as={StarIcon} color="yellow.500" boxSize={4} mr={2} />
+                <HStack spacing="-3" alignItems="flex-start">
                   <Icon as={StarIcon} color="yellow.500" boxSize={4} mr={2} />
                   <Text
                     ml={2}
-                    bgColor={'#43d477'}
-                    px={'0.5rem'}
-                    borderRadius={'0.3125rem'}
-                    fontSize={'0.75rem'}
-                    color={'white'}
+                    bgColor="#43d477"
+                    px="0.5rem"
+                    borderRadius="0.3125rem"
+                    fontSize="0.75rem"
+                    color="white"
                   >
                     {course.rating}
                   </Text>
                 </HStack>
-
-                <Box w={'full'}>
-                  <HStack justifyContent={'space-between'}>
-                    <Flex align="center">
-                      <Icon as={FaClock} mr="2" />
-                      <Text fontSize="sm" textAlign="left">
-                        {course.hours}
-                      </Text>
-                    </Flex>
-
-                    <Box className="verticle-line"></Box>
-
-                    <Flex align="center">
-                      <Icon as={FaCalendarAlt} mr="2" />
-                      <Text fontSize="sm" textAlign="left">
-                        {course.date}
-                      </Text>
-                    </Flex>
-                  </HStack>
-                </Box>
-                <Box
-                  mt={2}
-                  fontSize={'20px'}
-                  color={'#43d477'}
-                  fontWeight={800}
-                >
+                <HStack justifyContent="space-between">
+                  <Flex align="center">
+                    <Icon as={FaClock} mr="2" />
+                    <Text fontSize="sm" textAlign="left">
+                      {course.hours}
+                    </Text>
+                  </Flex>
+                  <Box className="verticle-line"></Box>
+                  <Flex align="center">
+                    <Icon as={FaCalendarAlt} mr="2" />
+                    <Text fontSize="sm" textAlign="left">
+                      {course.date}
+                    </Text>
+                  </Flex>
+                </HStack>
+                <Box mt={2} fontSize="20px" color="#43d477" fontWeight={800}>
                   {course.price}
                 </Box>
               </VStack>

@@ -5,32 +5,27 @@ import {
   Heading,
   Text,
   VStack,
-  Button,
   HStack,
   Icon,
   Image,
+  useBreakpointValue,
 } from '@chakra-ui/react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-// Import images or use URLs
 import firstCourse from '../../assets/Installment.jpg';
 import firstInstructor from '../../assets/instructor_profile.png';
-
 import secondCourse from '../../assets/new_live_system.jpg';
 import secondInstructor from '../../assets/user-profile2.png';
-
 import thirdCourse from '../../assets/course1.jpg';
 import thirdInstructor from '../../assets/user-profile3.png';
 
-// importing css
 import './home.css';
 import { FaCalendarAlt, FaClock } from 'react-icons/fa';
 import { StarIcon } from '@chakra-ui/icons';
 import { Link } from 'react-router-dom';
 
-// Custom dot component
 function CustomDot({ onClick, index, currentSlide }) {
   return (
     <Flex
@@ -100,7 +95,6 @@ const LatestBundles = () => {
     },
   ];
 
-  //   Conditional Dot rendering
   const initialCards = 3;
   const numDots = Math.ceil((courses.length - initialCards + 1) / 1);
 
@@ -113,6 +107,30 @@ const LatestBundles = () => {
     autoplay: true,
     autoplaySpeed: 6000,
     cssEase: 'linear',
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          arrows: false,
+        },
+      },
+    ],
     customPaging: function (i) {
       if (i < numDots) {
         return (
@@ -142,16 +160,14 @@ const LatestBundles = () => {
       <Slider {...settings}>
         {courses.map((course, index) => (
           <Box
-            // h="600px"
             key={index}
             borderRadius="15px"
             overflow="hidden"
             marginTop={5}
             className="new-course-card"
           >
-            {/* Card Section */}
             <Image
-              h={'300px'}
+              h={{ base: '200px', md: '300px' }}
               w={'full'}
               objectFit={'cover'}
               src={course.image}

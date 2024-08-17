@@ -1,28 +1,25 @@
 import { Flex, Heading, Text, Button, Image, Box } from '@chakra-ui/react';
-
-// importing images
 import instructorFinderImg from '../../assets/instructor_finder_banner.jpg';
 import Circle from '../../assets/circle-4.png';
 import Dot from '../../assets/dot.png';
 import mapIcon from '../../assets/mapIcon.png';
-
-// importing css
 import './home.css';
 
 const FindBestInstructor = () => {
   return (
     <Flex
-      direction="row"
+      direction={{ base: "column", lg: "row" }}
       alignItems="center"
       justifyContent="center"
-      h="100vh"
+      h={{ base: "auto", lg: "100vh" }}
       px={8}
-      marginTop={'-200px'}
+      marginTop={{ base: "0", lg: "-200px" }}
+      gap={8}
     >
-      <Box marginRight={'-200px'} boxSizing="border-box">
+      <Box marginRight={{ base: "0", lg: "-200px" }} textAlign={{ base: "center", lg: "left" }}>
         <Heading
           as="h2"
-          fontSize={'2.25rem'}
+          fontSize={{ base: "1.5rem", md: "2rem", lg: "2.25rem" }}
           lineHeight={1.22}
           color={'#343434'}
           fontWeight={700}
@@ -30,18 +27,19 @@ const FindBestInstructor = () => {
           Find the best instructor
         </Heading>
         <Text
-          fontSize={'1rem'}
+          fontSize={{ base: "0.875rem", md: "1rem" }}
           lineHeight={1.5}
           color={'#818894'}
           fontWeight={400}
           mt={'10px'}
-          maxW={'70%'}
+          maxW={{ base: "100%", lg: "70%" }}
+          mx={{ base: "auto", lg: "0" }}
         >
           Looking for an instructor? Find the best instructors according to
           different parameters like gender, skill level, price, meeting type,
           rating, etc. Find instructors on the map.
         </Text>
-        <Flex gap={4} mt={8}>
+        <Flex gap={4} mt={8} justifyContent={{ base: "center", lg: "flex-start" }}>
           <Button className="btn-primary">Tutor Finder</Button>
           <Button
             variant="outline"
@@ -53,7 +51,7 @@ const FindBestInstructor = () => {
         </Flex>
       </Box>
 
-      <Box width="80%" position={'relative'} boxSizing="border-box">
+      <Box width={{ base: "100%", lg: "80%" }} position={'relative'} boxSizing="border-box">
         <Image
           src={instructorFinderImg}
           alt="Instructor"
@@ -65,7 +63,7 @@ const FindBestInstructor = () => {
           alt="circle"
           position={'absolute'}
           top={'-50px'}
-          right={'2%'}
+          right={{ base: "10%", lg: "2%" }}
           zIndex={-1}
         />
         <Image src={Dot} alt="dot" className="best-istructor-dot-png" />
@@ -78,10 +76,10 @@ const FindBestInstructor = () => {
             boxSize="50px"
           />
           <Box>
-            <Text color={'#1f3b64'} fontWeight={700}>
-              Tutor Finder
+            <Text color={"#1f3b64"} fontWeight={700}>
+              Find the best instructor
             </Text>
-            <Text color={'GrayText'}>Find the best instructor now...</Text>
+            <Text color={'GrayText'}>according to your needs</Text>
           </Box>
         </Box>
       </Box>

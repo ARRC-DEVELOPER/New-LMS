@@ -6,7 +6,9 @@
 
 /* Intro-section */
 .introCard {
-  width: 250px;
+  width: 100%; /* Full width for small screens */
+  max-width: 250px; /* Limit width for larger screens */
+  margin: auto; /* Center cards */
   margin-bottom: 1rem;
   border-radius: 15px;
   box-shadow: 0 3px 30px 0 rgba(0, 0, 0, 0.1);
@@ -22,6 +24,22 @@
     color: black;
   }
 }
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  .introCard {
+    width: 100%; /* Ensure cards take full width on smaller screens */
+    max-width: 100%; /* Remove width limit on small screens */
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .introCard {
+    width: 100%; /* Full width for tablets */
+    max-width: 200px; /* Adjust width limit for tablets */
+  }
+}
+
 
 /* Featured Section */
 .slick-dots.custom-dots {
@@ -221,12 +239,11 @@
 
 .home-video-mask {
   position: absolute;
-  height: 300px;
-  border: solid 1px #707070;
-  background-color: #1f3b64;
   width: 100%;
   top: 50%;
   transform: translate(0, -50%);
+  background-color: #1f3b64;
+  border: solid 1px #707070;
 }
 
 .video-play-container {
@@ -277,14 +294,40 @@ video-play-container:before {
 .reward-container {
   border-radius: 30px;
   background-color: #f7fafd;
+  padding: 20px; /* Add padding for better spacing */
+  box-sizing: border-box; /* Ensure padding is included in the width */
 }
 
 .reward-left-box-img {
   position: relative;
-  height: 390px;
   width: 100%;
-  left: -70px;
-  top: -20px;
+  max-height: 250px; /* Adjust height for smaller screens */
+  margin: auto;
+}
+
+/* Adjustments for mobile view */
+@media (max-width: 768px) {
+  .reward-container {
+    flex-direction: column;
+    text-align: center; /* Center text on mobile */
+  }
+
+  .reward-left-box-img {
+    left: 0;
+    max-height: 200px; /* Further reduce height on smaller screens */
+  }
+
+  .reward-bounce-box {
+    bottom: 30px; /* Adjust positioning */
+    right: 0;
+    padding: 10px;
+    box-shadow: none; /* Remove shadow on small screens */
+    margin: 0 auto; /* Center the bounce box */
+  }
+
+  .reward-bounce-box img {
+    box-size: 40px; /* Adjust size of the icon */
+  }
 }
 
 .reward-bounce-box {
@@ -302,6 +345,20 @@ video-play-container:before {
   padding: 15px;
   border-radius: 0.625rem;
 }
+
+/* Keyframe animation for bounce effect */
+@keyframes hero-bounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
 
 /* Testimonial Section */
 .testimonial-bottom-gradient {

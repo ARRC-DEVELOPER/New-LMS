@@ -12,10 +12,16 @@ import {
   MenuItem,
   MenuList,
   Stack,
+  useDisclosure,
+  Drawer,
+  DrawerBody,
+  DrawerCloseButton,
+  DrawerContent,
+  DrawerHeader,
+  DrawerOverlay,
+  VStack,
 } from '@chakra-ui/react';
-
 import { useState } from 'react';
-
 import {
   FaBars,
   FaCode,
@@ -25,12 +31,13 @@ import {
   FaGraduationCap,
   FaPalette,
 } from 'react-icons/fa';
+import { RiMenu5Fill } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
-
 import Logo from '../../../assets/logo.png';
 
 const Navbar = () => {
   const [selectedLanguage, setSelectedLanguage] = useState('English');
+  const { isOpen, onClose, onOpen } = useDisclosure();
 
   const handleLanguageChange = language => {
     console.log(selectedLanguage);
@@ -53,16 +60,99 @@ const Navbar = () => {
     >
       <Container maxWidth="1200px">
         <Flex alignItems="center" justifyContent="space-between">
-          <Stack direction="row" alignItems="center" spacing={4}>
-            <HStack gap={-1}>
-              <Image src={Logo} alt="Logo" boxSize="40px" />
-              <Heading size="md" fontWeight="bold" color={'#13243d'}>
-                ARRC LMS
-              </Heading>
-            </HStack>
+          {/* Drawer Button for Mobile */}
+          <IconButton
+            textAlign={'center'}
+            icon={<RiMenu5Fill />}
+            aria-label="Open Menu"
+            onClick={onOpen}
+            display={{ base: 'flex', md: 'none' }}
+          />
 
+          {/* Drawer Component */}
+          <Drawer placement="left" isOpen={isOpen} onClose={onClose}>
+            <DrawerOverlay />
+            <DrawerContent>
+              <DrawerCloseButton />
+              <DrawerHeader borderBottomWidth={'1px'}>LEARN HUB</DrawerHeader>
+              <DrawerBody>
+                <VStack alignItems={'flex-start'} spacing={'4'}>
+                  <Menu>
+                    <MenuButton
+                      as={IconButton}
+                      icon={<FaBars />}
+                      variant="outline"
+                    />
+                    <MenuList>
+                      <Link to="/webdevlopment">
+                        <MenuItem icon={<FaCode />}>Development</MenuItem>
+                      </Link>
+
+                      <Link to="/management">
+                        <MenuItem icon={<FaBriefcase />} as="a" href="#">
+                          Business
+                        </MenuItem>
+                      </Link>
+
+                      <Link to="/marketing">
+                        <MenuItem icon={<FaChartLine />} as="a" href="#">
+                          Marketing
+                        </MenuItem>
+                      </Link>
+
+                      <MenuItem icon={<FaHeartbeat />} as="a" href="#">
+                        Lifestyle
+                      </MenuItem>
+
+                      <MenuItem icon={<FaGraduationCap />} as="a" href="#">
+                        Academics
+                      </MenuItem>
+
+                      <MenuItem icon={<FaPalette />} as="a" href="#">
+                        Design
+                      </MenuItem>
+                    </MenuList>
+                  </Menu>
+                  <Link onClick={onClose} to="/">
+                    Home
+                  </Link>
+                  <Link onClick={onClose} to="/courses">
+                    Courses
+                  </Link>
+                  <Link onClick={onClose} to="/instructors">
+                    Instructors
+                  </Link>
+                  <Link onClick={onClose} to="/products">
+                    Store
+                  </Link>
+                  <Link onClick={onClose} to="/forums">
+                    Forums
+                  </Link>
+                </VStack>
+              </DrawerBody>
+            </DrawerContent>
+          </Drawer>
+
+          {/* Logo */}
+          <HStack gap={4}>
+            <Image src={Logo} alt="Logo" boxSize="40px" />
+            <Heading
+              size="md"
+              marginLeft={'-15px'}
+              fontWeight="bold"
+              color={'#13243d'}
+            >
+              ARRC LMS
+            </Heading>
+
+            {/* Menu Button for Categories */}
             <Menu>
-              <MenuButton as={IconButton} icon={<FaBars />} variant="outline" />
+              <MenuButton
+                as={IconButton}
+                icon={<FaBars />}
+                variant="outline"
+                display={{ base: 'none', md: 'flex' }}
+              />
               <MenuList>
                 <Link to="/webdevlopment">
                   <MenuItem icon={<FaCode />}>Development</MenuItem>
@@ -94,6 +184,7 @@ const Navbar = () => {
               </MenuList>
             </Menu>
 
+            {/* Links for Desktop */}
             <HStack as="nav" spacing={4} display={{ base: 'none', md: 'flex' }}>
               <Link to="/">Home</Link>
               <Link to="/courses">Courses</Link>
@@ -101,15 +192,14 @@ const Navbar = () => {
               <Link to="/products">Store</Link>
               <Link to="/forums">Forums</Link>
             </HStack>
-          </Stack>
+          </HStack>
 
-          <Stack direction="row" alignItems="center">
-            <Link to="/login">
-              <Button colorScheme={'green'} variant="solid">
-                Start Learning
-              </Button>
-            </Link>
-          </Stack>
+          {/* Start Learning Button */}
+          <Link to="/login">
+            <Button colorScheme={'green'} variant="solid">
+              Start Learning
+            </Button>
+          </Link>
         </Flex>
       </Container>
     </Box>

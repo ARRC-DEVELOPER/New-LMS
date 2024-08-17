@@ -13,10 +13,13 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import { StarIcon } from '@chakra-ui/icons';
+import { useNavigate } from 'react-router-dom';
 
-const InstructorFinder = ({ markers }) => {
+const InstructorFinder = ({ instructors }) => {
   const [zoomLevel, setZoomLevel] = useState(2);
   const [center, setCenter] = useState([40.7128, -74.006]);
+
+  const navigate = useNavigate();
 
   const handleZoomChange = e => {
     setZoomLevel(e.target.getZoom());
@@ -25,6 +28,10 @@ const InstructorFinder = ({ markers }) => {
   const handleMapClick = e => {
     setCenter([e.latlng.lat, e.latlng.lng]);
   };
+
+  const handleProfileClick = (id) => {
+    navigate(`/instructor/profile/${id}`);
+  }
 
   return (
     <Box>
@@ -38,7 +45,7 @@ const InstructorFinder = ({ markers }) => {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {markers.map((marker, index) => (
+        {instructors.map((marker, index) => (
           <Marker
             key={index}
             position={marker.position}
@@ -53,6 +60,7 @@ const InstructorFinder = ({ markers }) => {
               <Box
                 textAlign={'center'}
                 display={'flex'}
+                width={"150px"}
                 justifyContent={'center'}
                 flexDirection={'column'}
                 alignItems={'center'}
@@ -95,6 +103,7 @@ const InstructorFinder = ({ markers }) => {
                   variant="solid"
                   colorScheme="green"
                   width={'full'}
+                  onClick={() => handleProfileClick(marker._id)}
                 >
                   Profile
                 </Button>

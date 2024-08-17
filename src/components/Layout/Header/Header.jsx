@@ -1,3 +1,4 @@
+import React, { Fragment, useState } from 'react';
 import {
   Flex,
   Box,
@@ -14,11 +15,10 @@ import {
   IconButton,
   Divider,
   VStack,
-  Text,
+  useBreakpointValue,
 } from '@chakra-ui/react';
 import { ChevronDownIcon, SearchIcon } from '@chakra-ui/icons';
 import { FaBell, FaShoppingCart } from 'react-icons/fa';
-import { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const sectionData = {
@@ -41,8 +41,8 @@ const sectionData = {
   'Find Best Instructor': 'find-best-instructor',
   'Home Video': 'home-video',
   'Reward Section': 'reward-section',
-  'Testimonials': 'testimonials',
-  'Organization': 'organization',
+  Testimonials: 'testimonials',
+  Organization: 'organization',
 };
 
 const Header = () => {
@@ -56,31 +56,46 @@ const Header = () => {
     );
 
     if (sectionId) {
-      document.getElementById(sectionData[sectionId])?.scrollIntoView({ behavior: 'smooth' });
+      document
+        .getElementById(sectionData[sectionId])
+        ?.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  // Adjust styles based on the screen size
+  const flexDirection = useBreakpointValue({ base: 'column', md: 'row' });
+  const searchBarWidth = useBreakpointValue({ base: 'full', md: '200px' });
+  const justifyContent = useBreakpointValue({ base: 'center', md: 'space-between' });
 
   return (
     <Fragment>
       <Box>
         <Flex
-          px="4"
+          px={{ base: '2', md: '4' }}
           py="2"
           justifyContent="center"
           alignItems="center"
           bg="white"
           shadow="sm"
+          direction={flexDirection}
         >
           <Container maxWidth="1200px">
-            <Flex justifyContent="space-between" w="full" alignItems="center">
-              <Flex alignItems="center">
-                <Box mr="4">
+            <Flex
+              justifyContent={justifyContent}
+              w="full"
+              alignItems="center"
+              flexWrap="wrap"
+              mx="auto" // Center horizontally
+            >
+              {/* Left Side */}
+              <Flex alignItems="center" flexWrap="wrap" justifyContent={'center'}>
+                <Box mr={{ base: '0', md: '4' }} mb={{ base: '2', md: '0' }}>
                   <Menu>
                     <MenuButton
                       as={Button}
                       rightIcon={<ChevronDownIcon />}
+                      variant="ghost"
                       onMouseEnter={event => event.currentTarget.focus()}
-                      variant={'ghost'}
                     >
                       INR (₹)
                     </MenuButton>
@@ -101,13 +116,13 @@ const Header = () => {
                   </Menu>
                 </Box>
 
-                <Box mr="4">
+                <Box mr={{ base: '0', md: '4' }} mb={{ base: '2', md: '0' }}>
                   <Menu>
                     <MenuButton
                       as={Button}
                       rightIcon={<ChevronDownIcon />}
+                      variant="ghost"
                       onMouseEnter={event => event.currentTarget.focus()}
-                      variant={'ghost'}
                     >
                       English
                     </MenuButton>
@@ -128,16 +143,16 @@ const Header = () => {
                   </Menu>
                 </Box>
 
-                <Box mr="4">
+                <Box mr={{ base: '0', md: '4' }} mb={{ base: '2', md: '0' }}>
                   <InputGroup>
                     <Input
                       placeholder="Search..."
-                      maxWidth="200px"
+                      width={searchBarWidth}
                       focusBorderColor="green.400"
                       borderColor="gray.200"
                       borderWidth="0.5px"
                       value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
+                      onChange={e => setSearchQuery(e.target.value)}
                     />
                     <InputRightElement>
                       <IconButton
@@ -152,8 +167,9 @@ const Header = () => {
                 </Box>
               </Flex>
 
-              <Box display={'flex'} gap={'20'} alignItems={'center'}>
-                <Box display={'flex'} alignItems={'center'}>
+              {/* Right Side */}
+              <Box display="flex" gap={{ base: '10', md: '20' }} alignItems="center">
+                <Box display="flex" alignItems="center">
                   <IconButton icon={<FaShoppingCart />} variant="" />
                   <Divider
                     orientation="vertical"
@@ -161,18 +177,19 @@ const Header = () => {
                     opacity={1}
                     borderColor="gray.400"
                     mx={2}
+                    display={{ base: 'none', md: 'block' }}
                   />
                   <IconButton icon={<FaBell />} variant="" />
                 </Box>
 
                 <Box>
-                  <Link to={'/login'}>
-                    <Button mr="2" variant={''}>
+                  <Link to="/login">
+                    <Button mr="2" variant="">
                       Login
                     </Button>
                   </Link>
-                  <Link to={'/signup'}>
-                    <Button variant={''}>Register</Button>
+                  <Link to="/signup">
+                    <Button variant="">Register</Button>
                   </Link>
                 </Box>
               </Box>

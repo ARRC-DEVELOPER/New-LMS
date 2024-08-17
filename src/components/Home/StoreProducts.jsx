@@ -26,7 +26,7 @@ import thirdInstructor from '../../assets/user-profile3.png';
 
 // importing css
 import './home.css';
-import {FaShoppingCart } from 'react-icons/fa';
+import { FaShoppingCart } from 'react-icons/fa';
 import { StarIcon } from '@chakra-ui/icons';
 import { Link } from 'react-router-dom';
 
@@ -119,11 +119,35 @@ const StoreProducts = () => {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 6000,
     cssEase: 'linear',
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          arrows: false,
+        },
+      },
+    ],
     customPaging: function (i) {
       if (i < numDots) {
         return (
@@ -187,9 +211,9 @@ const StoreProducts = () => {
                     {course.instructor}
                   </Text>
 
-                  <Box className='hover-card-action'>
-                    <Button className='btn-add-product-to-cart'>
-                        <FaShoppingCart size={'md'} />
+                  <Box className="hover-card-action">
+                    <Button className="btn-add-product-to-cart">
+                      <FaShoppingCart size={'md'} />
                     </Button>
                   </Box>
                 </Box>

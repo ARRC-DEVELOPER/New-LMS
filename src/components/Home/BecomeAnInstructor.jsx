@@ -1,28 +1,25 @@
 import { Flex, Heading, Text, Button, Image, Box } from '@chakra-ui/react';
-
-// importing images
 import BecomeAnInstructorImg from '../../assets/become_instructor_banner.jpg';
 import Circle from '../../assets/circle-4.png';
 import Dot from '../../assets/dot.png';
 import instructorIcon from '../../assets/istructorIcon.png';
-
-// importing css
 import './home.css';
 
 const BecomeAnInstructor = () => {
   return (
     <Flex
-      direction="row"
+      direction={{ base: "column", lg: "row" }}
       alignItems="center"
       justifyContent="center"
-      h="100vh"
+      h={{ base: "auto", lg: "100vh" }}
       px={8}
-      marginTop={"-90px"}
+      marginTop={{ base: "0", lg: "-90px" }}
+      gap={8}
     >
-      <Box marginRight={'-200px'} boxSizing="border-box">
+      <Box marginRight={{ base: "0", lg: "-200px" }} textAlign={{ base: "center", lg: "left" }}>
         <Heading
           as="h2"
-          fontSize={'2.25rem'}
+          fontSize={{ base: "1.5rem", md: "2rem", lg: "2.25rem" }}
           lineHeight={1.22}
           color={'#343434'}
           fontWeight={700}
@@ -30,17 +27,18 @@ const BecomeAnInstructor = () => {
           Become an Instructor
         </Heading>
         <Text
-          fontSize={'1rem'}
+          fontSize={{ base: "0.875rem", md: "1rem" }}
           lineHeight={1.5}
           color={'#818894'}
           fontWeight={400}
           mt={'10px'}
-          maxW={'70%'}
+          maxW={{ base: "100%", lg: "70%" }}
+          mx={{ base: "auto", lg: "0" }}
         >
           Are you interested to be a part of our community? You can be a part of
           our community by signing up as an instructor or organization.
         </Text>
-        <Flex gap={4} mt={8}>
+        <Flex gap={4} mt={8} justifyContent={{ base: "center", lg: "flex-start" }}>
           <Button className="btn-primary">Become an Instructor</Button>
           <Button
             variant="outline"
@@ -52,7 +50,7 @@ const BecomeAnInstructor = () => {
         </Flex>
       </Box>
 
-      <Box width="80%" position={'relative'} boxSizing="border-box">
+      <Box width={{ base: "100%", lg: "80%" }} position={'relative'} boxSizing="border-box">
         <Image
           src={BecomeAnInstructorImg}
           alt="Instructor"
@@ -64,7 +62,7 @@ const BecomeAnInstructor = () => {
           alt="circle"
           position={'absolute'}
           top={'-50px'}
-          right={'7%'}
+          right={{ base: "10%", lg: "7%" }}
           zIndex={-1}
         />
         <Image src={Dot} alt="dot" className="istructor-dot-png" />

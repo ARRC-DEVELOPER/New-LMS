@@ -23,26 +23,10 @@ import {
 } from '@chakra-ui/react';
 import { StarIcon } from '@chakra-ui/icons';
 
-// importing icons
-import Icon1 from '../../assets/forum-user1.png';
-import Icon2 from '../../assets/forum-user2.png';
-import Icon3 from '../../assets/user-profile3.png';
-
-// importing badges
-import Badge1 from '../../assets/old_membership.png';
-import Badge2 from '../../assets/3to6_classes.png';
-import Badge3 from '../../assets/rating_above4.png';
-import Badge4 from '../../assets/sales_above10.png';
-import Badge5 from '../../assets/fantastic_support.png';
-import Badge6 from '../../assets/forum_top_user.png';
-import Badge7 from '../../assets/best_seller.png';
-import Badge8 from '../../assets/top_seller.png';
-import Badge9 from '../../assets/junior_vendor.png';
-
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaCalendarAlt, FaClock } from 'react-icons/fa';
 
-const Instructors = () => {
+const Instructors = ({ instructors, badgeList }) => {
   // FilterBar
   const [view, setView] = useState('grid');
   const [availability, setAvailability] = useState(false);
@@ -105,75 +89,11 @@ const Instructors = () => {
     },
   ];
 
-  const markers = [
-    {
-      position: [40.7128, -74.006],
-      iconUrl: Icon1,
-      name: 'Linda Anderson',
-      profile_headline: 'It Technician at IBM',
-      rating: '3.8',
-      charges: 8000,
-      total_hour_tutor: 0,
-      skills: ['Management', 'Web Development', 'Mobile Development'],
-      about: `Robert started his career as a Unix and Linux System Engineer in 1999. Since that time he has utilized his Linux skills at companies such as Xerox, UPS, Hewlett-Packard, and Amazon.com. Additionally, he has acted as a technical consultant and independent contractor for small businesses and Fortune 500 companies. Robert has professional experience with CentOS, RedHat Enterprise Linux, SUSE Linux Enterprise Server, and Ubuntu. He has used several Linux distributions on personal projects including Debian, Slackware, CrunchBang, and others. In addition to Linux, Jason has experience supporting proprietary Unix operating systems including AIX, HP-UX, and Solaris. He enjoys teaching others how to use and exploit the power of the Linux operating system. He is also the author of the books "Linux for Beginners" and "Command Line Kung Fu.`,
-      offer: 10,
-      reward_badges: {
-        old_membership: true,
-        junior_vendor: true,
-        expert_vendor: false,
-        golden_classes: true,
-        king_seller: true,
-        best_seller: false,
-        top_seller: false,
-        funtastic_support: true,
-        forums_top_user: true,
-      },
-    },
-    {
-      position: [34.0522, -118.2437],
-      iconUrl: Icon2,
-      name: 'Linda Anderson',
-      profile_headline: 'It Technician at IBM',
-      rating: '3.8',
-      charges: 8000,
-      reward_badges: {
-        old_membership: true,
-        expert_vendor: true,
-        golden_classes: true,
-        king_seller: true,
-        best_seller: false,
-        top_seller: false,
-        funtastic_support: true,
-        forums_top_user: true,
-        junior_vendor: false,
-      },
-    },
-    {
-      position: [51.5074, -0.1278],
-      iconUrl: Icon3,
-      name: 'Linda Anderson',
-      profile_headline: 'It Technician at IBM',
-      rating: '3.8',
-      charges: 8000,
-      reward_badges: {
-        old_membership: true,
-        expert_vendor: true,
-        golden_classes: true,
-        king_seller: true,
-        best_seller: false,
-        top_seller: false,
-        funtastic_support: true,
-        forums_top_user: true,
-        junior_vendor: false,
-      },
-    },
-  ];
-
   return (
     <div className="instructors">
       <div className="container">
         <section className="instructors-map">
-          <InstructorFinder markers={markers} />
+          <InstructorFinder instructors={instructors} />
         </section>
 
         <section className="filterbar">
@@ -293,7 +213,10 @@ const Instructors = () => {
                 flexWrap={'wrap'}
                 gap={8}
               >
-                <InstructorData markers={markers} />
+                <InstructorData
+                  instructors={instructors}
+                  badgeList={badgeList}
+                />
               </Box>
             </Box>
           </Container>
@@ -349,22 +272,16 @@ const FilterBar = ({ filterOptions, selectedFilters, handleFilterChange }) => {
   );
 };
 
-const InstructorData = ({ markers }) => {
-  const badgeList = [
-    { src: Badge1, label: 'Old Membership', key: 'old_membership' },
-    { src: Badge2, label: '3 to 6 Classes', key: 'expert_vendor' },
-    { src: Badge3, label: 'Classes Rating from 4 to 5', key: 'golden_classes' },
-    { src: Badge4, label: 'Sales Above 10', key: 'king_seller' },
-    { src: Badge5, label: 'Fantastic Support', key: 'funtastic_support' },
-    { src: Badge6, label: 'Forum Top User', key: 'forums_top_user' },
-    { src: Badge7, label: 'Best Seller', key: 'best_seller' },
-    { src: Badge8, label: 'Top Seller', key: 'top_seller' },
-    { src: Badge9, label: 'Has 1 class', key: 'junior_vendor' },
-  ];
+const InstructorData = ({ instructors, badgeList }) => {
+  const navigate = useNavigate();
+
+  const handleProfileClick = id => {
+    navigate(`/instructor/profile/${id}`);
+  };
 
   return (
     <Fragment>
-      {markers.map((instructor, index) => (
+      {instructors.map((instructor, index) => (
         <Box
           key={index}
           borderRadius="15px"
@@ -373,6 +290,8 @@ const InstructorData = ({ markers }) => {
           display={'flex'}
           className="new-course-card"
           py={'25px'}
+          cursor={'pointer'}
+          onClick={() => handleProfileClick(instructor._id)}
         >
           {/* Card Section */}
           <Box width={'65%'} borderRight={'1px solid #f1f1f1'}>
