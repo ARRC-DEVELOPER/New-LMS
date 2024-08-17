@@ -114,39 +114,39 @@ const Testimonials = () => {
   ];
 
   //   Conditional Dot rendering
-  const initialCards = 3;
+  const initialCards = 4;
   const numDots = Math.ceil((cardData.length - initialCards + 1) / 1);
 
   const settings = {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: 4,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 6000,
     cssEase: 'linear',
     responsive: [
       {
-        breakpoint: 1200, 
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 768,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
         },
       },
       {
-        breakpoint: 768, 
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-      {
         breakpoint: 480,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 2,
           slidesToScroll: 1,
-          arrows: false, 
+          arrows: false,
         },
       },
     ],
