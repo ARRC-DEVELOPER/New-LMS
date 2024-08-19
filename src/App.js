@@ -32,6 +32,15 @@ import Products from './components/Products/Products';
 import Forums from './components/Forums/Forums';
 import Instructors from './components/Intstructors/Instructors';
 import InstructorProfile from './components/Intstructors/InstructorProfile';
+import GameDevelopment from './components/CategoryPages/Development/GameDevelopment';
+import MobileDevelopment from './components/CategoryPages/Development/MobileDevelopment';
+import Communication from './components/CategoryPages/Business/Communication';
+import BusinessStrategy from './components/CategoryPages/Business/BusinessStrategy';
+import LifeStyle from './components/CategoryPages/LifeStyle/LifeStyle';
+import BeautyMakeup from './components/CategoryPages/LifeStyle/BeautyMakeup';
+import Math from './components/CategoryPages/Academics/Math';
+import Science from './components/CategoryPages/Academics/Science';
+import Language from './components/CategoryPages/Academics/Language';
 
 
 const App = () => {
@@ -133,9 +142,24 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/webdevlopment" element={<WebDevelopment />} />
+
+          <Route path="/web-development" element={<WebDevelopment />} />
+          <Route path="/game-development" element={<GameDevelopment />} />
+          <Route path="/mobile-development" element={<MobileDevelopment />} />
+          
           <Route path="/management" element={<Management />} />
+          <Route path="/communication" element={<Communication />} />
+          <Route path="/business-strategy" element={<BusinessStrategy />} />
+
           <Route path="/marketing" element={<Marketing />} />
+
+          <Route path="/life-style" element={<LifeStyle />} />
+          <Route path="/beauty-makeup" element={<BeautyMakeup />} />
+
+          <Route path="/math" element={<Math />} />
+          <Route path="/science" element={<Science />} />
+          <Route path="/language" element={<Language />} />
+
           <Route path="/courses" element={<Courses />} />
           <Route path="/products" element={<Products />} />
           <Route path="/forums" element={<Forums />} />

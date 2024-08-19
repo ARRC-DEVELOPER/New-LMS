@@ -30,6 +30,7 @@ import {
   FaHeartbeat,
   FaGraduationCap,
   FaPalette,
+  FaChevronDown,
 } from 'react-icons/fa';
 import { RiMenu5Fill } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
@@ -84,33 +85,106 @@ const Navbar = () => {
                       variant="outline"
                     />
                     <MenuList>
-                      <Link to="/webdevlopment">
-                        <MenuItem icon={<FaCode />}>Development</MenuItem>
-                      </Link>
+                      <Menu>
+                        <MenuButton
+                          as={Button}
+                          leftIcon={<FaCode />}
+                          rightIcon={<FaChevronDown />}
+                          variant=""
+                        >
+                          Development
+                        </MenuButton>
+                        <MenuList className="submenu">
+                          <Link onClick={onClose} to="/web-development">
+                            <MenuItem>Web Development</MenuItem>
+                          </Link>
+                          <Link onClick={onClose} to="/game-development">
+                            <MenuItem>Game Development</MenuItem>
+                          </Link>
+                          <Link onClick={onClose} to="/mobile-development">
+                            <MenuItem>Mobile Development</MenuItem>
+                          </Link>
+                        </MenuList>
+                      </Menu>
 
-                      <Link to="/management">
-                        <MenuItem icon={<FaBriefcase />} as="a" href="#">
+                      <br />
+
+                      <Menu>
+                        <MenuButton
+                          as={Button}
+                          leftIcon={<FaBriefcase />}
+                          rightIcon={<FaChevronDown />}
+                          variant=""
+                        >
                           Business
-                        </MenuItem>
-                      </Link>
+                        </MenuButton>
+                        <MenuList className="submenu">
+                          <Link onClick={onClose} to="/management">
+                            <MenuItem>Management</MenuItem>
+                          </Link>
+                          <Link onClick={onClose} to="/communication">
+                            <MenuItem>Communication</MenuItem>
+                          </Link>
+                          <Link onClick={onClose} to="/business-strategy">
+                            <MenuItem>Business Strategy</MenuItem>
+                          </Link>
+                        </MenuList>
+                      </Menu>
 
-                      <Link to="/marketing">
+                      <Link onClick={onClose} to="/marketing">
                         <MenuItem icon={<FaChartLine />} as="a" href="#">
                           Marketing
                         </MenuItem>
                       </Link>
 
-                      <MenuItem icon={<FaHeartbeat />} as="a" href="#">
-                        Lifestyle
-                      </MenuItem>
+                      <Menu>
+                        <MenuButton
+                          as={Button}
+                          leftIcon={<FaHeartbeat />}
+                          rightIcon={<FaChevronDown />}
+                          variant=""
+                        >
+                          Life Style
+                        </MenuButton>
+                        <MenuList className="submenu">
+                          <Link onClick={onClose} to="/life-style">
+                            <MenuItem>Life Style</MenuItem>
+                          </Link>
+                          <Link onClick={onClose} to="/beauty-makeup">
+                            <MenuItem>Beauty & Makeup</MenuItem>
+                          </Link>
+                        </MenuList>
+                      </Menu>
 
-                      <MenuItem icon={<FaGraduationCap />} as="a" href="#">
-                        Academics
-                      </MenuItem>
+                      <br />
 
-                      <MenuItem icon={<FaPalette />} as="a" href="#">
-                        Design
-                      </MenuItem>
+                      <Menu>
+                        <MenuButton
+                          as={Button}
+                          leftIcon={<FaGraduationCap />}
+                          rightIcon={<FaChevronDown />}
+                          variant=""
+                        >
+                          Academics
+                        </MenuButton>
+                        <MenuList className="submenu">
+                          <Link onClick={onClose} to="/math">
+                            <MenuItem>Math</MenuItem>
+                          </Link>
+                          <Link onClick={onClose} to="/science">
+                            <MenuItem>Science</MenuItem>
+                          </Link>
+                          <Link onClick={onClose} to="/language">
+                            <MenuItem>Language</MenuItem>
+                          </Link>
+                        </MenuList>
+                      </Menu>
+
+                      <Link onClick={onClose} to={'/design'}>
+                        <MenuItem icon={<FaPalette />} as="a" href="#">
+                          Design
+                        </MenuItem>
+                      </Link>
                     </MenuList>
                   </Menu>
                   <Link onClick={onClose} to="/">
@@ -154,15 +228,51 @@ const Navbar = () => {
                 display={{ base: 'none', md: 'flex' }}
               />
               <MenuList>
-                <Link to="/webdevlopment">
-                  <MenuItem icon={<FaCode />}>Development</MenuItem>
-                </Link>
+                <Menu>
+                  <MenuButton
+                    as={Button}
+                    leftIcon={<FaCode />}
+                    rightIcon={<FaChevronDown />}
+                    variant=""
+                  >
+                    Development
+                  </MenuButton>
+                  <MenuList className="submenu">
+                    <Link to="/web-development">
+                      <MenuItem>Web Development</MenuItem>
+                    </Link>
+                    <Link to="/game-development">
+                      <MenuItem>Game Development</MenuItem>
+                    </Link>
+                    <Link to="/mobile-development">
+                      <MenuItem>Mobile Development</MenuItem>
+                    </Link>
+                  </MenuList>
+                </Menu>
 
-                <Link to="/management">
-                  <MenuItem icon={<FaBriefcase />} as="a" href="#">
+                <br />
+
+                <Menu>
+                  <MenuButton
+                    as={Button}
+                    leftIcon={<FaBriefcase />}
+                    rightIcon={<FaChevronDown />}
+                    variant=""
+                  >
                     Business
-                  </MenuItem>
-                </Link>
+                  </MenuButton>
+                  <MenuList className="submenu">
+                    <Link to="/management">
+                      <MenuItem>Management</MenuItem>
+                    </Link>
+                    <Link to="/communication">
+                      <MenuItem>Communication</MenuItem>
+                    </Link>
+                    <Link to="/business-strategy">
+                      <MenuItem>Business Strategy</MenuItem>
+                    </Link>
+                  </MenuList>
+                </Menu>
 
                 <Link to="/marketing">
                   <MenuItem icon={<FaChartLine />} as="a" href="#">
@@ -170,17 +280,54 @@ const Navbar = () => {
                   </MenuItem>
                 </Link>
 
-                <MenuItem icon={<FaHeartbeat />} as="a" href="#">
-                  Lifestyle
-                </MenuItem>
+                <Menu>
+                  <MenuButton
+                    as={Button}
+                    leftIcon={<FaHeartbeat />}
+                    rightIcon={<FaChevronDown />}
+                    variant=""
+                  >
+                    Life Style
+                  </MenuButton>
+                  <MenuList className="submenu">
+                    <Link to="/life-style">
+                      <MenuItem>Life Style</MenuItem>
+                    </Link>
+                    <Link to="/beauty-makeup">
+                      <MenuItem>Beauty & Makeup</MenuItem>
+                    </Link>
+                  </MenuList>
+                </Menu>
 
-                <MenuItem icon={<FaGraduationCap />} as="a" href="#">
-                  Academics
-                </MenuItem>
+                <br />
 
-                <MenuItem icon={<FaPalette />} as="a" href="#">
-                  Design
-                </MenuItem>
+                <Menu>
+                  <MenuButton
+                    as={Button}
+                    leftIcon={<FaGraduationCap />}
+                    rightIcon={<FaChevronDown />}
+                    variant=""
+                  >
+                    Academics
+                  </MenuButton>
+                  <MenuList className="submenu">
+                    <Link to="/math">
+                      <MenuItem>Math</MenuItem>
+                    </Link>
+                    <Link to="/science">
+                      <MenuItem>Science</MenuItem>
+                    </Link>
+                    <Link to="/language">
+                      <MenuItem>Language</MenuItem>
+                    </Link>
+                  </MenuList>
+                </Menu>
+
+                <Link to={'/design'}>
+                  <MenuItem icon={<FaPalette />} as="a" href="#">
+                    Design
+                  </MenuItem>
+                </Link>
               </MenuList>
             </Menu>
 
