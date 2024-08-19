@@ -15,6 +15,7 @@ import {
   Select,
   Switch,
   Text,
+  useBreakpointValue,
   VStack,
 } from '@chakra-ui/react';
 
@@ -144,23 +145,33 @@ const Products = () => {
     },
   ];
 
+  // Responsive values
+  const containerMaxWidth = useBreakpointValue({ base: '100%', md: '1200px' });
+  const inputPadding = useBreakpointValue({ base: '6', md: '8' });
+  const headingFontSize = useBreakpointValue({
+    base: '1.5rem',
+    md: '1.875rem',
+  });
+  const searchWidth = useBreakpointValue({ base: '100%', md: '600px' });
+  const filterBarSpacing = useBreakpointValue({ base: 2, md: 8 });
+  const courseCardGap = useBreakpointValue({ base: 4, md: 8 });
+
   return (
     <section className="webdev">
       <div className="container">
         <section className="site-top-banner">
           <Image src={backCover} className="img-cover" />
-          <Container maxWidth={'1200px'} h={'530px'} zIndex={100}>
+          <Container maxWidth={containerMaxWidth} h={'530px'} zIndex={100}>
             <Box
               display={'flex'}
               flexDirection={'column'}
               justifyContent={'center'}
               alignItems={'center'}
-              alignContent={'center'}
               h={'100%'}
             >
               <Heading
                 as={'h1'}
-                fontSize={'1.875rem'}
+                fontSize={headingFontSize}
                 color={'white'}
                 zIndex={10}
               >
@@ -175,10 +186,15 @@ const Products = () => {
               >
                 5 Products
               </Text>
-              <HStack spacing={4} marginTop={20} position="relative" w="600px">
+              <HStack
+                spacing={filterBarSpacing}
+                marginTop={20}
+                position="relative"
+                w={searchWidth}
+              >
                 <Input
                   w="full"
-                  padding={8}
+                  padding={inputPadding}
                   bgColor="white"
                   borderRadius="full"
                   placeholder="Search courses, instructors and organizations..."
@@ -201,82 +217,86 @@ const Products = () => {
         </section>
 
         <section className="filterbar">
-          <Container maxWidth={'1200px'} mt={10}>
+          <Container maxWidth={containerMaxWidth} mt={10}>
             <Flex
               className="topFilters"
               rounded="md"
-              alignItems="center"
+              alignItems={['start', 'center']}
               justifyContent="space-between"
+              direction={['column', 'row']}
+              gap={5}
             >
-              <HStack spacing={8}>
-                <Box
-                  display={'flex'}
-                  flexDir={'row'}
-                  alignContent={'center'}
-                  alignItems={'center'}
-                  gap={2}
-                >
-                  <Text
-                    htmlFor="free"
-                    fontSize={'0.875rem'}
-                    fontWeight={400}
-                    lineheight={1.3}
+              <HStack spacing={filterBarSpacing}>
+                <Box display={'flex'} flexDirection={['column', 'row']} gap={5}>
+                  <Box
+                    display={'flex'}
+                    flexDir={'row'}
+                    alignContent={'center'}
+                    alignItems={'center'}
+                    gap={2}
                   >
-                    Free
-                  </Text>
-                  <Switch
-                    isChecked={free}
-                    onChange={handleFreeChange}
-                    id="free"
-                  />
-                </Box>
+                    <Text
+                      htmlFor="free"
+                      fontSize={'0.875rem'}
+                      fontWeight={400}
+                      lineheight={1.3}
+                    >
+                      Free
+                    </Text>
+                    <Switch
+                      isChecked={free}
+                      onChange={handleFreeChange}
+                      id="free"
+                    />
+                  </Box>
 
-                <Box
-                  display={'flex'}
-                  flexDir={'row'}
-                  alignContent={'center'}
-                  alignItems={'center'}
-                  gap={2}
-                >
-                  <Text
-                    htmlFor="download"
-                    fontSize={'0.875rem'}
-                    fontWeight={400}
-                    lineheight={1.3}
+                  <Box
+                    display={'flex'}
+                    flexDir={'row'}
+                    alignContent={'center'}
+                    alignItems={'center'}
+                    gap={2}
                   >
-                    Free Shipping
-                  </Text>
-                  <Switch
-                    isChecked={freeShipping}
-                    onChange={handleFreeShippingChange}
-                    id="freeShipping"
-                  />
-                </Box>
+                    <Text
+                      htmlFor="download"
+                      fontSize={'0.875rem'}
+                      fontWeight={400}
+                      lineheight={1.3}
+                    >
+                      Free Shipping
+                    </Text>
+                    <Switch
+                      isChecked={freeShipping}
+                      onChange={handleFreeShippingChange}
+                      id="freeShipping"
+                    />
+                  </Box>
 
-                <Box
-                  display={'flex'}
-                  flexDir={'row'}
-                  alignContent={'center'}
-                  alignItems={'center'}
-                  gap={2}
-                >
-                  <Text
-                    fontSize={'0.875rem'}
-                    fontWeight={400}
-                    lineheight={1.3}
-                    htmlFor="discount"
+                  <Box
+                    display={'flex'}
+                    flexDir={'row'}
+                    alignContent={'center'}
+                    alignItems={'center'}
+                    gap={2}
                   >
-                    Discount
-                  </Text>
-                  <Switch
-                    isChecked={discount}
-                    onChange={handleDiscountChange}
-                    id="discount"
-                  />
+                    <Text
+                      fontSize={'0.875rem'}
+                      fontWeight={400}
+                      lineheight={1.3}
+                      htmlFor="discount"
+                    >
+                      Discount
+                    </Text>
+                    <Switch
+                      isChecked={discount}
+                      onChange={handleDiscountChange}
+                      id="discount"
+                    />
+                  </Box>
                 </Box>
               </HStack>
 
-              <Box width={'15rem'} marginLeft={'2rem'}>
+              <Box width={['full', '15rem']} marginLeft={['0px', '2rem']}>
                 <Select
                   placeholder="Sort by"
                   value={sort}
@@ -298,11 +318,15 @@ const Products = () => {
         </section>
 
         <section className={'categorybody'}>
-          <Container maxWidth={'1200px'} mt={10}>
-            <Box display={'flex'} gap={2}>
+          <Container maxWidth={containerMaxWidth} mt={10}>
+            <Box
+              display={'flex'}
+              flexDirection={useBreakpointValue({ base: 'column', md: 'row' })}
+              gap={courseCardGap}
+            >
               {/* Courses Section */}
               <Box
-                width={'80%'}
+                width={['full', '80%']}
                 display={'flex'}
                 flexDir={'row'}
                 flexWrap={'wrap'}
@@ -311,7 +335,7 @@ const Products = () => {
                 {courses.map((course, index) => (
                   <Box
                     // h="600px"
-                    w={'280px'}
+                    width={['full', '280px']}
                     key={index}
                     borderRadius="15px"
                     overflow="hidden"
@@ -433,7 +457,7 @@ const Products = () => {
                 ))}
               </Box>
 
-              <Box width={'280px'}>
+              <Box width={['full', '280px']}>
                 {typeFilter.map(filterGroup => (
                   <Box
                     p={4}

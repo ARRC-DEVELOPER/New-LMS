@@ -15,6 +15,7 @@ import {
   Select,
   Switch,
   Text,
+  useBreakpointValue,
   VStack,
 } from '@chakra-ui/react';
 
@@ -163,23 +164,33 @@ const Courses = () => {
     },
   ];
 
+  // Responsive values
+  const containerMaxWidth = useBreakpointValue({ base: '100%', md: '1200px' });
+  const inputPadding = useBreakpointValue({ base: '6', md: '8' });
+  const headingFontSize = useBreakpointValue({
+    base: '1.5rem',
+    md: '1.875rem',
+  });
+  const searchWidth = useBreakpointValue({ base: '100%', md: '600px' });
+  const filterBarSpacing = useBreakpointValue({ base: 2, md: 8 });
+  const courseCardGap = useBreakpointValue({ base: 4, md: 8 });
+
   return (
     <section className="webdev">
       <div className="container">
         <section className="site-top-banner">
           <Image src={backCover} className="img-cover" />
-          <Container maxWidth={'1200px'} h={'530px'} zIndex={100}>
+          <Container maxWidth={containerMaxWidth} h={'530px'} zIndex={100}>
             <Box
               display={'flex'}
               flexDirection={'column'}
               justifyContent={'center'}
               alignItems={'center'}
-              alignContent={'center'}
               h={'100%'}
             >
               <Heading
                 as={'h1'}
-                fontSize={'1.875rem'}
+                fontSize={headingFontSize}
                 color={'white'}
                 zIndex={10}
               >
@@ -194,10 +205,15 @@ const Courses = () => {
               >
                 5 Courses
               </Text>
-              <HStack spacing={4} marginTop={20} position="relative" w="600px">
+              <HStack
+                spacing={filterBarSpacing}
+                marginTop={20}
+                position="relative"
+                w={searchWidth}
+              >
                 <Input
                   w="full"
-                  padding={8}
+                  padding={inputPadding}
                   bgColor="white"
                   borderRadius="full"
                   placeholder="Search courses, instructors and organizations..."
@@ -220,138 +236,123 @@ const Courses = () => {
         </section>
 
         <section className="filterbar">
-          <Container maxWidth={'1200px'} mt={10}>
+          <Container maxWidth={containerMaxWidth} mt={10}>
             <Flex
               className="topFilters"
               rounded="md"
-              alignItems="center"
+              alignItems={['start', 'center']}
               justifyContent="space-between"
+              direction={['column', 'row']}
+              gap={5}
             >
-              <HStack spacing={8} marginLeft={2}>
-                {/* <Input
-                  type="radio"
-                  name="view"
-                  value="grid"
-                  checked={view === 'grid'}
-                  onChange={handleViewChange}
-                /> */}
+              <HStack spacing={filterBarSpacing} marginLeft={2}>
                 <Icon as={FaThLarge} fontSize="lg" />
-
-                {/* <Input
-                  type="radio"
-                  name="view"
-                  value="list"
-                  checked={view === 'list'}
-                  onChange={handleViewChange}
-                /> */}
                 <Icon as={FaList} fontSize="lg" />
               </HStack>
 
-              <HStack spacing={8}>
-                <Box
-                  display={'flex'}
-                  flexDir={'row'}
-                  alignContent={'center'}
-                  alignItems={'center'}
-                  gap={2}
-                >
-                  <Text
-                    fontSize={'0.875rem'}
-                    fontWeight={400}
-                    lineheight={1.3}
-                    htmlFor="upcoming"
+              <HStack spacing={filterBarSpacing}>
+                <Box display={'flex'} flexDirection={['column', 'row']} gap={5}>
+                  <Box
+                    display={'flex'}
+                    flexDir={'row'}
+                    alignContent={'center'}
+                    alignItems={'center'}
+                    gap={2}
                   >
-                    Upcoming
-                  </Text>
-                  <Switch
-                    isChecked={upcoming}
-                    onChange={handleUpcomingChange}
-                    id="upcoming"
-                  />
-                </Box>
+                    <Text
+                      fontSize={'0.875rem'}
+                      fontWeight={400}
+                      lineheight={1.3}
+                    >
+                      Upcoming
+                    </Text>
+                    <Switch
+                      isChecked={upcoming}
+                      onChange={handleUpcomingChange}
+                      id="upcoming"
+                    />
+                  </Box>
 
-                <Box
-                  display={'flex'}
-                  flexDir={'row'}
-                  alignContent={'center'}
-                  alignItems={'center'}
-                  gap={2}
-                >
-                  <Text
-                    htmlFor="free"
-                    fontSize={'0.875rem'}
-                    fontWeight={400}
-                    lineheight={1.3}
+                  <Box
+                    display={'flex'}
+                    flexDir={'row'}
+                    alignContent={'center'}
+                    alignItems={'center'}
+                    gap={2}
                   >
-                    Free
-                  </Text>
-                  <Switch
-                    isChecked={free}
-                    onChange={handleFreeChange}
-                    id="free"
-                  />
-                </Box>
+                    <Text
+                      fontSize={'0.875rem'}
+                      fontWeight={400}
+                      lineheight={1.3}
+                    >
+                      Free
+                    </Text>
+                    <Switch
+                      isChecked={free}
+                      onChange={handleFreeChange}
+                      id="free"
+                    />
+                  </Box>
 
-                <Box
-                  display={'flex'}
-                  flexDir={'row'}
-                  alignContent={'center'}
-                  alignItems={'center'}
-                  gap={2}
-                >
-                  <Text
-                    fontSize={'0.875rem'}
-                    fontWeight={400}
-                    lineheight={1.3}
-                    htmlFor="discount"
+                  <Box
+                    display={'flex'}
+                    flexDir={'row'}
+                    alignContent={'center'}
+                    alignItems={'center'}
+                    gap={2}
                   >
-                    Discount
-                  </Text>
-                  <Switch
-                    isChecked={discount}
-                    onChange={handleDiscountChange}
-                    id="discount"
-                  />
-                </Box>
+                    <Text
+                      fontSize={'0.875rem'}
+                      fontWeight={400}
+                      lineheight={1.3}
+                    >
+                      Discount
+                    </Text>
+                    <Switch
+                      isChecked={discount}
+                      onChange={handleDiscountChange}
+                      id="discount"
+                    />
+                  </Box>
 
-                <Box
-                  display={'flex'}
-                  flexDir={'row'}
-                  alignContent={'center'}
-                  alignItems={'center'}
-                  gap={2}
-                >
-                  <Text
-                    htmlFor="download"
-                    fontSize={'0.875rem'}
-                    fontWeight={400}
-                    lineheight={1.3}
+                  <Box
+                    display={'flex'}
+                    flexDir={'row'}
+                    alignContent={'center'}
+                    alignItems={'center'}
+                    gap={2}
                   >
-                    Download
-                  </Text>
-                  <Switch
-                    isChecked={download}
-                    onChange={handleDownloadChange}
-                    id="download"
-                  />
-                </Box>
+                    <Text
+                      fontSize={'0.875rem'}
+                      fontWeight={400}
+                      lineheight={1.3}
+                    >
+                      Download
+                    </Text>
+                    <Switch
+                      isChecked={download}
+                      onChange={handleDownloadChange}
+                      id="download"
+                    />
+                  </Box>
 
-                <Box width={'15rem'} marginLeft={'2rem'}>
-                  <Select
-                    placeholder="Sort by"
-                    value={sort}
-                    onChange={handleSortChange}
-                    fontSize={'0.875rem'}
-                    lineHeight={1.4}
-                    colorScheme="green"
-                  >
-                    <option value="">All</option>
-                    <option value="newest">Newest</option>
-                    <option value="expensive">Highest Price</option>
-                    <option value="inexpensive">Lowest Price</option>
-                    <option value="bestsellers">Bestsellers</option>
-                    <option value="best_rates">Best Rated</option>
-                  </Select>
+                  <Box width={['full', "15rem"]} marginLeft={['0px', '2rem']}>
+                    <Select
+                      placeholder="Sort by"
+                      value={sort}
+                      onChange={handleSortChange}
+                      fontSize={'0.875rem'}
+                      lineHeight={1.4}
+                      colorScheme="green"
+                    >
+                      <option value="">All</option>
+                      <option value="newest">Newest</option>
+                      <option value="expensive">Highest Price</option>
+                      <option value="inexpensive">Lowest Price</option>
+                      <option value="bestsellers">Bestsellers</option>
+                      <option value="best_rates">Best Rated</option>
+                    </Select>
+                  </Box>
                 </Box>
               </HStack>
             </Flex>
@@ -359,11 +360,15 @@ const Courses = () => {
         </section>
 
         <section className={'categorybody'}>
-          <Container maxWidth={'1200px'} mt={10}>
-            <Box display={'flex'} gap={2}>
+          <Container maxWidth={containerMaxWidth} mt={10}>
+            <Box
+              display={'flex'}
+              flexDirection={useBreakpointValue({ base: 'column', md: 'row' })}
+              gap={courseCardGap}
+            >
               {/* Courses Section */}
               <Box
-                width={'70%'}
+                width={['full', '70%']}
                 display={'flex'}
                 flexDir={'row'}
                 flexWrap={'wrap'}
@@ -372,7 +377,7 @@ const Courses = () => {
                 {courses.map((course, index) => (
                   <Box
                     // h="600px"
-                    width={'46%'}
+                    width={['full', '46%']}
                     key={index}
                     borderRadius="15px"
                     overflow="hidden"
@@ -507,7 +512,7 @@ const Courses = () => {
                 ))}
               </Box>
 
-              <Box width={'30%'}>
+              <Box width={['full', '30%']}>
                 <Box
                   p={4}
                   rounded="md"

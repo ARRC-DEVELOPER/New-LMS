@@ -12,6 +12,7 @@ import {
   Image,
   Input,
   Text,
+  useBreakpointValue,
 } from '@chakra-ui/react';
 
 // importing images
@@ -67,13 +68,16 @@ const Forums = () => {
     },
   ];
 
+  // Responsive values
+  const containerMaxWidth = useBreakpointValue({ base: '100%', md: '1200px' });
+
   return (
     <div className="forums">
       <div className="container">
         <section className="forum-top-banner">
-          <Image src={banner} className="forum-img-cover" />
+          <Image src={banner} className="forum-img-cover" display={['none', 'none', 'block']} />
           <Container
-            maxWidth={'1200px'}
+            maxWidth={containerMaxWidth}
             display={'flex'}
             flexDirection={'column'}
             justifyContent={'center'}
@@ -81,7 +85,7 @@ const Forums = () => {
             position={'relative'}
             zIndex={'2'}
           >
-            <Box w={'42%'}>
+            <Box w={['full', '42%']}>
               <Heading
                 fontSize={'2.25rem'}
                 fontWeight={'bold'}
@@ -125,7 +129,7 @@ const Forums = () => {
         </section>
 
         <section className="forum-stats">
-          <Container maxWidth={'1200px'}>
+          <Container maxWidth={containerMaxWidth}>
             <ForumStats />
           </Container>
         </section>
@@ -133,7 +137,7 @@ const Forums = () => {
         <section className="forum-featured">
           <Box>
             <Image src={featured_section} className="featured-img-cover" />
-            <Container maxWidth={'1200px'} zIndex={'2'} textAlign={'center'}>
+            <Container maxWidth={containerMaxWidth} zIndex={'2'} textAlign={'center'}>
               <Box marginBottom={'30px'}>
                 <Heading
                   fontSize={'1.875rem'}
@@ -165,12 +169,12 @@ const Forums = () => {
             <Box
               className="forum-question-section"
               display={'flex'}
-              flexDirection={'row'}
+              flexDirection={['column','row']}
               width={'full'}
-              minH={"372px"}
+              minH={'372px'}
               position={'relative'}
             >
-              <Box boxSizing="border-box" px={10} py={25} w={'60%'}>
+              <Box boxSizing="border-box" px={10} py={25} w={['full', '60%']}>
                 <Heading
                   as="h2"
                   fontSize={'2.25rem'}
@@ -204,8 +208,15 @@ const Forums = () => {
                 </Flex>
               </Box>
 
-              <Box w={"40%"}>
-                <Image src={forum_que} height={'auto'} marginTop={"-91px"} position={'absolute'} right={20} top={0} />
+              <Box w={['full', '40%']} display={['none', 'none', 'block']}>
+                <Image
+                  src={forum_que}
+                  height={'auto'}
+                  marginTop={'-91px'}
+                  position={'absolute'}
+                  right={20}
+                  top={0}
+                />
               </Box>
             </Box>
           </Container>
@@ -221,6 +232,7 @@ const ForumStats = () => {
       <Box
         className="forum-stats-section"
         display={'flex'}
+        flexWrap={'wrap'}
         justifyContent={'space-around'}
       >
         <Box

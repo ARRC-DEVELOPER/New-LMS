@@ -20,11 +20,12 @@ import {
   Text,
   VStack,
   Tooltip,
+  useBreakpointValue,
 } from '@chakra-ui/react';
 import { StarIcon } from '@chakra-ui/icons';
 
-import { Link, useNavigate } from 'react-router-dom';
-import { FaCalendarAlt, FaClock } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
+import { FaClock } from 'react-icons/fa';
 
 const Instructors = ({ instructors, badgeList }) => {
   // FilterBar
@@ -89,6 +90,17 @@ const Instructors = ({ instructors, badgeList }) => {
     },
   ];
 
+  // Responsive values
+  const containerMaxWidth = useBreakpointValue({ base: '100%', md: '1200px' });
+  const inputPadding = useBreakpointValue({ base: '6', md: '8' });
+  const headingFontSize = useBreakpointValue({
+    base: '1.5rem',
+    md: '1.875rem',
+  });
+  const searchWidth = useBreakpointValue({ base: '100%', md: '600px' });
+  const filterBarSpacing = useBreakpointValue({ base: 2, md: 8 });
+  const courseCardGap = useBreakpointValue({ base: 4, md: 8 });
+
   return (
     <div className="instructors">
       <div className="container">
@@ -97,82 +109,86 @@ const Instructors = ({ instructors, badgeList }) => {
         </section>
 
         <section className="filterbar">
-          <Container maxWidth={'1200px'} mt={10}>
+          <Container maxWidth={containerMaxWidth} mt={10}>
             <Flex
               className="topFilters"
               rounded="md"
-              alignItems="center"
+              alignItems={['start', 'center']}
               justifyContent="space-between"
+              direction={['column', 'row']}
+              gap={5}
             >
-              <HStack spacing={8}>
-                <Box
-                  display={'flex'}
-                  flexDir={'row'}
-                  alignContent={'center'}
-                  alignItems={'center'}
-                  gap={2}
-                >
-                  <Text
-                    htmlFor="free"
-                    fontSize={'0.875rem'}
-                    fontWeight={400}
-                    lineheight={1.3}
+              <HStack spacing={filterBarSpacing}>
+                <Box display={'flex'} flexDirection={['column', 'row']} gap={5}>
+                  <Box
+                    display={'flex'}
+                    flexDir={'row'}
+                    alignContent={'center'}
+                    alignItems={'center'}
+                    gap={2}
                   >
-                    Available for Meetings
-                  </Text>
-                  <Switch
-                    isChecked={availability}
-                    onChange={handleAvailabilityChange}
-                    id="free"
-                  />
-                </Box>
+                    <Text
+                      htmlFor="free"
+                      fontSize={'0.875rem'}
+                      fontWeight={400}
+                      lineheight={1.3}
+                    >
+                      Available for Meetings
+                    </Text>
+                    <Switch
+                      isChecked={availability}
+                      onChange={handleAvailabilityChange}
+                      id="free"
+                    />
+                  </Box>
 
-                <Box
-                  display={'flex'}
-                  flexDir={'row'}
-                  alignContent={'center'}
-                  alignItems={'center'}
-                  gap={2}
-                >
-                  <Text
-                    htmlFor="download"
-                    fontSize={'0.875rem'}
-                    fontWeight={400}
-                    lineheight={1.3}
+                  <Box
+                    display={'flex'}
+                    flexDir={'row'}
+                    alignContent={'center'}
+                    alignItems={'center'}
+                    gap={2}
                   >
-                    Free Meetings
-                  </Text>
-                  <Switch
-                    isChecked={freeMeetings}
-                    onChange={handleFreeMeetingsChange}
-                    id="freeShipping"
-                  />
-                </Box>
+                    <Text
+                      htmlFor="download"
+                      fontSize={'0.875rem'}
+                      fontWeight={400}
+                      lineheight={1.3}
+                    >
+                      Free Meetings
+                    </Text>
+                    <Switch
+                      isChecked={freeMeetings}
+                      onChange={handleFreeMeetingsChange}
+                      id="freeShipping"
+                    />
+                  </Box>
 
-                <Box
-                  display={'flex'}
-                  flexDir={'row'}
-                  alignContent={'center'}
-                  alignItems={'center'}
-                  gap={2}
-                >
-                  <Text
-                    fontSize={'0.875rem'}
-                    fontWeight={400}
-                    lineheight={1.3}
-                    htmlFor="discount"
+                  <Box
+                    display={'flex'}
+                    flexDir={'row'}
+                    alignContent={'center'}
+                    alignItems={'center'}
+                    gap={2}
                   >
-                    Discount
-                  </Text>
-                  <Switch
-                    isChecked={discount}
-                    onChange={handleDiscountChange}
-                    id="discount"
-                  />
+                    <Text
+                      fontSize={'0.875rem'}
+                      fontWeight={400}
+                      lineheight={1.3}
+                      htmlFor="discount"
+                    >
+                      Discount
+                    </Text>
+                    <Switch
+                      isChecked={discount}
+                      onChange={handleDiscountChange}
+                      id="discount"
+                    />
+                  </Box>
                 </Box>
               </HStack>
 
-              <Box width={'15rem'} marginLeft={'2rem'}>
+              <Box width={['full', '15rem']} marginLeft={['0px', '2rem']}>
                 <Select
                   placeholder="Sort by"
                   value={sort}
@@ -194,10 +210,10 @@ const Instructors = ({ instructors, badgeList }) => {
         </section>
 
         <section className={'instructorbody'}>
-          <Container maxWidth={'1200px'} mt={10}>
-            <Box display={'flex'} gap={8}>
-              {/* Right FilterBar */}
-              <Box width={'30%'}>
+          <Container maxWidth={containerMaxWidth} mt={10}>
+            <Box display={'flex'} flexDirection={['column', 'row']} gap={8}>
+              {/* left FilterBar */}
+              <Box width={['full', '30%']}>
                 <FilterBar
                   filterOptions={filterOptions}
                   selectedFilters={selectedFilters}
@@ -207,7 +223,7 @@ const Instructors = ({ instructors, badgeList }) => {
 
               {/* Instructor info Section */}
               <Box
-                width={'70%'}
+                width={['full', '70%']}
                 display={'flex'}
                 flexDir={'row'}
                 flexWrap={'wrap'}
@@ -288,13 +304,18 @@ const InstructorData = ({ instructors, badgeList }) => {
           overflow="hidden"
           width={'full'}
           display={'flex'}
+          flexDirection={['column', 'row']}
           className="new-course-card"
           py={'25px'}
           cursor={'pointer'}
           onClick={() => handleProfileClick(instructor._id)}
         >
           {/* Card Section */}
-          <Box width={'65%'} borderRight={'1px solid #f1f1f1'}>
+          <Box
+            width={['full', '65%']}
+            borderRight={['none', '1px solid #f1f1f1']}
+            borderBottom={['1px solid #f1f1f1', 'none']}
+          >
             <HStack px={'15px'} alignItems={'flex-start'}>
               <Image className="instructor-avatar" src={instructor.iconUrl} />
               <Box px={'15px'}>
@@ -337,7 +358,7 @@ const InstructorData = ({ instructors, badgeList }) => {
           </Box>
 
           <Box
-            width={'35%'}
+            width={['full', '35%']}
             h={'full'}
             overflow="hidden"
             align="flex-start"
@@ -345,7 +366,7 @@ const InstructorData = ({ instructors, badgeList }) => {
             zIndex={2}
             paddingRight={'30px'}
           >
-            <VStack spacing="4" align={'flex-start'}>
+            <VStack spacing="4" align={['flex-start']}>
               <Box display={'flex'} alignItems={'center'}>
                 <Text fontWeight={700} fontSize={'1.25rem'} color={'#43d477'}>
                   ₹{instructor.charges}
