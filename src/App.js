@@ -41,6 +41,7 @@ import BeautyMakeup from './components/CategoryPages/LifeStyle/BeautyMakeup';
 import Math from './components/CategoryPages/Academics/Math';
 import Science from './components/CategoryPages/Academics/Science';
 import Language from './components/CategoryPages/Academics/Language';
+import Desgin from './components/CategoryPages/Design/Design';
 
 
 const App = () => {
@@ -159,6 +160,8 @@ const App = () => {
           <Route path="/math" element={<Math />} />
           <Route path="/science" element={<Science />} />
           <Route path="/language" element={<Language />} />
+
+          <Route path="/design" element={<Desgin />} />
 
           <Route path="/courses" element={<Courses />} />
           <Route path="/products" element={<Products />} />

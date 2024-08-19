@@ -19,38 +19,41 @@ import {
   VStack,
 } from '@chakra-ui/react';
 
-import '../CategoryPages/Development/development.css';
+import '../Development/development.css';
 
-import { FaShoppingCart } from 'react-icons/fa';
-
-// importing css
-import '../CategoryPages/Development/development.css';
+import { FaCalendarAlt, FaClock, FaList, FaThLarge } from 'react-icons/fa';
+import { BsArrowDown } from 'react-icons/bs';
 
 // importing images
-import backCover from '../../assets/webdev-category_cover.png';
+import backCover from '../../../assets/webdev-category_cover.png';
 
 // Import images or use URLs
-import firstCourse from '../../assets/Installment.jpg';
-import firstInstructor from '../../assets/instructor_profile.png';
+import firstCourse from '../../../assets/Installment.jpg';
+import firstInstructor from '../../../assets/instructor_profile.png';
 
-import secondCourse from '../../assets/new_live_system.jpg';
-import secondInstructor from '../../assets/user-profile2.png';
+import secondCourse from '../../../assets/new_live_system.jpg';
+import secondInstructor from '../../../assets/user-profile2.png';
 
-import thirdCourse from '../../assets/course1.jpg';
-import thirdInstructor from '../../assets/user-profile3.png';
+import thirdCourse from '../../../assets/course1.jpg';
+import thirdInstructor from '../../../assets/user-profile3.png';
 
 import { Link } from 'react-router-dom';
 import { StarIcon } from '@chakra-ui/icons';
 
-const Products = () => {
+const Desgin = () => {
   const [view, setView] = useState('grid');
+  const [upcoming, setUpcoming] = useState(false);
   const [free, setFree] = useState(false);
-  const [freeShipping, setFreeShipping] = useState(false);
   const [discount, setDiscount] = useState(false);
+  const [download, setDownload] = useState(false);
   const [sort, setSort] = useState('');
 
   const handleViewChange = e => {
     setView(e.target.value);
+  };
+
+  const handleUpcomingChange = e => {
+    setUpcoming(e.target.checked);
   };
 
   const handleFreeChange = e => {
@@ -61,8 +64,8 @@ const Products = () => {
     setDiscount(e.target.checked);
   };
 
-  const handleFreeShippingChange = e => {
-    setFreeShipping(e.target.checked);
+  const handleDownloadChange = e => {
+    setDownload(e.target.checked);
   };
 
   const handleSortChange = e => {
@@ -80,20 +83,53 @@ const Products = () => {
     }
   };
 
-  const typeFilter = [
+  const filterOptions = [
     {
       title: 'Type',
       options: [
-        { label: 'Virtual', value: 'virtual' },
-        { label: 'Physical', value: 'physical' },
+        { label: 'Live Class', value: 'live_class' },
+        { label: 'Course', value: 'course' },
+        { label: 'Text Course', value: 'text_course' },
       ],
     },
-
     {
-      title: 'Options',
+      title: 'Level',
       options: [
-        { label: 'Only available products', value: 'available' },
-        { label: 'Products with points', value: 'points' },
+        { label: 'Beginner', value: 'beginner' },
+        { label: 'Intermediate', value: 'intermediate' },
+        { label: 'Expert', value: 'expert' },
+      ],
+    },
+    {
+      title: 'Language',
+      options: [
+        { label: 'English', value: 'english' },
+        { label: 'Español', value: 'espanol' },
+        { label: 'Portugues', value: 'portugues' },
+        { label: 'हिन्', value: 'hindi' },
+        { label: 'العربية', value: 'arabic' },
+      ],
+    },
+    {
+      title: 'Topic',
+      options: [
+        { label: 'Android Development', value: 'android' },
+        { label: 'iOS Development', value: 'ios' },
+        { label: 'Google Flutter', value: 'flutter' },
+        { label: 'React Native Kotlin', value: 'react_native' },
+      ],
+    },
+    {
+      title: 'More options',
+      options: [
+        { label: 'Show only bundles', value: 'bundles' },
+        { label: 'Show only subscribe', value: 'subscribe' },
+        {
+          label: 'Show only certificate included',
+          value: 'certificate_included',
+        },
+        { label: 'Show only courses with quiz', value: 'with_quiz' },
+        { label: 'Show only featured courses', value: 'featured' },
       ],
     },
   ];
@@ -108,40 +144,7 @@ const Products = () => {
       date: '1 Mar 2022',
       image: firstCourse,
       price: 'Free',
-      catagory: 'Business Strategy',
-    },
-    {
-      title: 'Advanced Strategies',
-      instructor: 'Robert Ransdell',
-      instructorProfile: secondInstructor,
-      rating: '4.8',
-      hours: '2:45 Hours',
-      date: '15 Feb 2022',
-      image: secondCourse,
-      price: 'Subscribe',
-      catagory: 'Communication',
-    },
-    {
-      title: 'Installment and Secure Host',
-      instructor: 'Jessica Wray',
-      instructorProfile: thirdInstructor,
-      rating: '5.0',
-      hours: '1:30 Hours',
-      date: '15 Mar 2023',
-      image: thirdCourse,
-      price: '₹ 8000',
-      catagory: 'Management',
-    },
-    {
-      title: 'Fourth Course',
-      instructor: 'Another Instructor',
-      instructorProfile: secondInstructor,
-      rating: '4.5',
-      hours: '2:00 Hours',
-      date: '10 Apr 2022',
-      image: secondCourse,
-      price: '₹ 8000',
-      catagory: 'Communication',
+      catagory: 'Web Developement',
     },
   ];
 
@@ -154,6 +157,7 @@ const Products = () => {
   });
   const searchWidth = useBreakpointValue({ base: '100%', md: '600px' });
   const filterBarSpacing = useBreakpointValue({ base: 2, md: 8 });
+  const courseCardWidth = useBreakpointValue({ base: '100%', md: '46%' });
   const courseCardGap = useBreakpointValue({ base: 4, md: 8 });
 
   return (
@@ -175,7 +179,7 @@ const Products = () => {
                 color={'white'}
                 zIndex={10}
               >
-                Products
+                Design
               </Heading>
               <Text
                 className="badge-count"
@@ -184,7 +188,7 @@ const Products = () => {
                 rounded={'md'}
                 zIndex={10}
               >
-                5 Products
+                1 Courses
               </Text>
               <HStack
                 spacing={filterBarSpacing}
@@ -226,8 +230,50 @@ const Products = () => {
               direction={['column', 'row']}
               gap={5}
             >
+              <HStack spacing={filterBarSpacing} marginLeft={2}>
+                {/* <Input
+                  type="radio"
+                  name="view"
+                  value="grid"
+                  checked={view === 'grid'}
+                  onChange={handleViewChange}
+                /> */}
+                <Icon as={FaThLarge} fontSize="lg" />
+
+                {/* <Input
+                  type="radio"
+                  name="view"
+                  value="list"
+                  checked={view === 'list'}
+                  onChange={handleViewChange}
+                /> */}
+                <Icon as={FaList} fontSize="lg" />
+              </HStack>
+
               <HStack spacing={filterBarSpacing}>
                 <Box display={'flex'} flexDirection={['column', 'row']} gap={5}>
+                  <Box
+                    display={'flex'}
+                    flexDir={'row'}
+                    alignContent={'center'}
+                    alignItems={'center'}
+                    gap={2}
+                  >
+                    <Text
+                      fontSize={'0.875rem'}
+                      fontWeight={400}
+                      lineheight={1.3}
+                      htmlFor="upcoming"
+                    >
+                      Upcoming
+                    </Text>
+                    <Switch
+                      isChecked={upcoming}
+                      onChange={handleUpcomingChange}
+                      id="upcoming"
+                    />
+                  </Box>
+
                   <Box
                     display={'flex'}
                     flexDir={'row'}
@@ -258,28 +304,6 @@ const Products = () => {
                     gap={2}
                   >
                     <Text
-                      htmlFor="download"
-                      fontSize={'0.875rem'}
-                      fontWeight={400}
-                      lineheight={1.3}
-                    >
-                      Free Shipping
-                    </Text>
-                    <Switch
-                      isChecked={freeShipping}
-                      onChange={handleFreeShippingChange}
-                      id="freeShipping"
-                    />
-                  </Box>
-
-                  <Box
-                    display={'flex'}
-                    flexDir={'row'}
-                    alignContent={'center'}
-                    alignItems={'center'}
-                    gap={2}
-                  >
-                    <Text
                       fontSize={'0.875rem'}
                       fontWeight={400}
                       lineheight={1.3}
@@ -293,26 +317,48 @@ const Products = () => {
                       id="discount"
                     />
                   </Box>
+
+                  <Box
+                    display={'flex'}
+                    flexDir={'row'}
+                    alignContent={'center'}
+                    alignItems={'center'}
+                    gap={2}
+                  >
+                    <Text
+                      htmlFor="download"
+                      fontSize={'0.875rem'}
+                      fontWeight={400}
+                      lineheight={1.3}
+                    >
+                      Download
+                    </Text>
+                    <Switch
+                      isChecked={download}
+                      onChange={handleDownloadChange}
+                      id="download"
+                    />
+                  </Box>
+
+                  <Box width={['full', '15rem']} marginLeft={['0px', '2rem']}>
+                    <Select
+                      placeholder="Sort by"
+                      value={sort}
+                      onChange={handleSortChange}
+                      fontSize={'0.875rem'}
+                      lineHeight={1.4}
+                      colorScheme="green"
+                    >
+                      <option value="">All</option>
+                      <option value="newest">Newest</option>
+                      <option value="expensive">Highest Price</option>
+                      <option value="inexpensive">Lowest Price</option>
+                      <option value="bestsellers">Bestsellers</option>
+                      <option value="best_rates">Best Rated</option>
+                    </Select>
+                  </Box>
                 </Box>
               </HStack>
-
-              <Box width={['full', '15rem']} marginLeft={['0px', '2rem']}>
-                <Select
-                  placeholder="Sort by"
-                  value={sort}
-                  onChange={handleSortChange}
-                  fontSize={'0.875rem'}
-                  lineHeight={1.4}
-                  colorScheme="green"
-                >
-                  <option value="">All</option>
-                  <option value="newest">Newest</option>
-                  <option value="expensive">Highest Price</option>
-                  <option value="inexpensive">Lowest Price</option>
-                  <option value="bestsellers">Bestsellers</option>
-                  <option value="best_rates">Best Rated</option>
-                </Select>
-              </Box>
             </Flex>
           </Container>
         </section>
@@ -326,16 +372,16 @@ const Products = () => {
             >
               {/* Courses Section */}
               <Box
-                width={['full', '80%']}
+                width={['full', '70%']}
                 display={'flex'}
                 flexDir={'row'}
                 flexWrap={'wrap'}
-                gap={5}
+                gap={8}
               >
                 {courses.map((course, index) => (
                   <Box
-                    // h="600px"
-                    width={['full', '275px']}
+                    h="600px"
+                    width={['full', '46%']}
                     key={index}
                     borderRadius="15px"
                     overflow="hidden"
@@ -343,7 +389,7 @@ const Products = () => {
                   >
                     {/* Card Section */}
                     <Image
-                      h={'200px'}
+                      h={'300px'}
                       w={'full'}
                       objectFit={'cover'}
                       src={course.image}
@@ -374,12 +420,6 @@ const Products = () => {
                           >
                             {course.instructor}
                           </Text>
-
-                          <Box className="hover-card-action">
-                            <Button className="btn-add-product-to-cart">
-                              <FaShoppingCart size={'md'} />
-                            </Button>
-                          </Box>
                         </Box>
                         <Heading
                           color={'#171347'}
@@ -443,6 +483,25 @@ const Products = () => {
                           </Text>
                         </HStack>
 
+                        <Box w={'full'}>
+                          <HStack justifyContent={'space-between'}>
+                            <Flex align="center">
+                              <Icon as={FaClock} mr="2" />
+                              <Text fontSize="sm" textAlign="left">
+                                {course.hours}
+                              </Text>
+                            </Flex>
+
+                            <Box className="verticle-line"></Box>
+
+                            <Flex align="center">
+                              <Icon as={FaCalendarAlt} mr="2" />
+                              <Text fontSize="sm" textAlign="left">
+                                {course.date}
+                              </Text>
+                            </Flex>
+                          </HStack>
+                        </Box>
                         <Box
                           mt={2}
                           fontSize={'20px'}
@@ -457,21 +516,19 @@ const Products = () => {
                 ))}
               </Box>
 
-              <Box width={['full', '280px']}>
-                {typeFilter.map(filterGroup => (
-                  <Box
-                    p={4}
-                    rounded="md"
-                    shadow="md"
-                    border="1px"
-                    borderColor="gray.300"
-                    w="full"
-                    maxW="md"
-                    marginBottom={5}
-                    key={filterGroup.title}
-                  >
-                    <VStack spacing={4}>
-                      <FormControl>
+              <Box width={['full', '30%']}>
+                <Box
+                  p={4}
+                  rounded="md"
+                  shadow="md"
+                  border="1px"
+                  borderColor="gray.300"
+                  w="full"
+                  maxW="md"
+                >
+                  <VStack spacing={4}>
+                    {filterOptions.map(filterGroup => (
+                      <FormControl key={filterGroup.title}>
                         <FormLabel
                           fontSize={'16px'}
                           color={'#171347'}
@@ -480,6 +537,7 @@ const Products = () => {
                           {filterGroup.title}
                         </FormLabel>
                         <div className="greenbar"></div>
+
                         {filterGroup.options.map(option => (
                           <HStack key={option.value} mt={5}>
                             <Checkbox
@@ -492,43 +550,14 @@ const Products = () => {
                           </HStack>
                         ))}
                       </FormControl>
-                      <Button
-                        variant="solid"
-                        colorScheme="green"
-                        onClick={() => console.log(selectedFilters)}
-                        width={'full'}
-                      >
-                        Filter Items
-                      </Button>
-                    </VStack>
-                  </Box>
-                ))}
-
-                <Box
-                  p={4}
-                  rounded="md"
-                  shadow="md"
-                  border="1px"
-                  borderColor="gray.300"
-                  w="full"
-                  maxW="md"
-                  marginBottom={5}
-                >
-                  <VStack align={'self-start'} justifyContent={'center'}>
-                    <Text fontSize={'16px'} color={'#171347'} fontWeight={700}>
-                      Catagories
-                    </Text>
-                    <div className="greenbar"></div>
-
-                    <Button textAlign={'left'} m={0} p={0} variant={''}>
-                      Design Tools
-                    </Button>
-                    <Button textAlign={'left'} mt={'-3'} p={0} variant={''}>
-                      Science Tools
-                    </Button>
-                    <Button textAlign={'left'} mt={'-3'} p={0} variant={''}>
-                      {' '}
-                      e-books
+                    ))}
+                    <Button
+                      variant="solid"
+                      colorScheme="green"
+                      onClick={() => console.log(selectedFilters)}
+                      width={'full'}
+                    >
+                      Filter Items
                     </Button>
                   </VStack>
                 </Box>
@@ -541,4 +570,4 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default Desgin;
