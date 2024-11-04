@@ -214,16 +214,12 @@ const Footer = () => {
               All rights are reserved for learning management system platform
             </Text>
             <Flex align="center">
-              <Icon as={HiPhone} boxSize={5} mr={2} />
-              <Text fontSize="sm">415-716-1166</Text>
               <Box
                 mx={4}
                 height="100%"
                 borderLeftWidth={1}
                 borderColor="gray.600"
               />
-              <Icon as={HiMail} boxSize={5} mr={2} />
-              <Text fontSize="sm">mailer@rocket-soft.org</Text>
             </Flex>
           </Flex>
         </Container>
